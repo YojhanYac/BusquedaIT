@@ -40,6 +40,44 @@
         <h1>
             Bienvenido a BusquedasIT!
         </h1>
+<!--<div class="toast" id="cajita1" role="alert" aria-live="assertive" aria-atomic="true">
+  <div  class="toast-header">
+    <img src="" class="rounded mr-2" alt="...">
+    <strong class="mr-auto">Bootstrap</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div  class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+</div>-->
+
+
+<!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 1200px;  border: 5px solid green;"> -->
+  <!-- Position it -->
+  <div class="" style="position: absolute; bottom: 0; right: 0; height: 100px; z-index: 1060; position: fixed;">
+
+    <!-- Then put toasts within -->
+    <div class="toast" id="cajita1" data-delay="10000" style="position: relative; bottom: 0; right: 0; height: 100%;">
+      <div class="toast-header" style="width: 1000px!important;">
+        <!--<img src="" class="rounded mr-2" alt="...">-->
+        <strong class="mr-auto">BusquedasIT</strong>
+        <small class="text-muted">2 seconds ago</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body" style="width: 100%;">
+        Se agregó correctamente!
+      </div>
+    </div>
+
+  </div>
+<!-- </div> -->
+
+
 
         <!-- Button trigger modal -->
         <button
@@ -84,6 +122,7 @@
                             <label for="habilidadesBlandas">habilidadesBlandas</label>
                             <input type="text" id="habilidadesBlandas" name="habilidadesBlandas">
                             <br>
+                            
                         </div>
                         <div class="modal-footer">
                             <button
@@ -109,14 +148,17 @@
                 //echo "<br>";
                 //print_r($arrayBuff);
                 foreach($arrayBuff as $name){
-                    ?><div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; justify-content: space-between;"><?php
+                    ?><div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><?php
                     foreach($name as $asda => $asdb){
                        // echo "asda = " . $asda . "..... asdb = " . $asdb . "<br>";
                     if($asda == "nombre" || $asda == "habilidadesTecnicas"){
-                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;; width: auto;"><?php echo $asdb; ?></div><div style=""><button style="height: 100%;">Editar</button><button>Eliminar</button></div>
-                <?php $count = 0; } else{ ?><div style="margin: 0px 0px; width: 300px; display:inline-block;"><?php echo $asdb; ?></div><?php $count++;}}}  ?></div></div><?php } ?></div>
+                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;"><?php echo $asdb; ?></div> <div style="width: 10%; min-width:200px;"><button style="width: 50%;">Editar</button><button style="width: 50%;">Eliminar</button></div>
+                <?php $count = 0; } else{ ?><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;"><?php echo $asdb; ?></div><?php $count++;}}}  ?></div></div><?php } ?></div>
 
         <script type="text/javascript">
+    /*    $(document).ready(function () {
+        $('#cajita1').toast('show');
+        });*/
             $(document).ready(function () {
                 $('#addPanel').submit(function (e) {
                     e.preventDefault();
@@ -176,6 +218,7 @@
                                             });
                                         }
                                     });
+                                    $('#cajita1').toast('show');
                                //     alert("Se agrego Correctamente!");
                             } else {
                                 alert("No se pudo agregar!");
