@@ -36,7 +36,7 @@
             crossorigin="anonymous">
         <title>Document</title>
     </head>
-    <body>
+    <body style="background: gray;">
         <h1>
             Bienvenido a BusquedasIT!
         </h1>
@@ -98,19 +98,14 @@
             </div>
         </div>
 
-        <div id="Refresh">
-            <?php 
+        <div id="Refresh"><?php 
             $count = 0;
             foreach ($dataBase->mostrar("puestos") as $buff){
-                ?><div class="card" style="border: 2px solid black;width: 100%;"> <div class="card-body" style=""> <?php
+                ?><div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style=""><?php
                 foreach($buff as $name => $value){
                     if($name == "nombre" || $name == "habilidadesTecnicas"){
-                        if($count == 1 ){?>
-                <div style="margin: 0px 0px; display:inline-block;; width: auto;"><?php echo $value; ?></div>
-                <?php $count = 0; } else{ ?>
-                <div style="margin: 0px 0px; width: 300px; display:inline-block;"><?php echo $value; ?> </div>
-            <?php $count++;}}}  ?> </div></div> <?php } ?>
-        </div>
+                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;; width: auto;"><?php echo $value; ?></div>
+                <?php $count = 0; } else{ ?><div style="margin: 0px 0px; width: 300px; display:inline-block;"><?php echo $value; ?></div><?php $count++;}}}  ?></div></div> <?php } ?></div>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -139,27 +134,34 @@
                                         },
                                         success: function (respuesta) {
                                             var div = document.querySelector('#Refresh');
+                                            var countArray = 0;
                                             var count = 0;
                                             div.innerHTML = "";
                                             var arrayDeCadenas = [];
 
                                             var stringJSON = JSON.parse(respuesta);
                                             for(x in stringJSON){
-                                                    console.log(x);
+                                                    countArray++;
                                             }
 
 
+                                          //  console.log(countArray);
+
+                                            //Buscar que se cargue o vea al principio de la lista el puesto ingresado
                                             var datas = JSON.parse(respuesta, function (key, value) {
+                                               //    console.log(countArray + " = " + count);
+
                                                 if(key == "nombre") {
-                                                    arrayDeCadenas = arrayDeCadenas + '<div class="card" style="border: 2px solid black;width: 100%;"> <div class="card-body" style=""> <div style="display:inline-block; margin: 0px ' +
-                                                            '0px; width:20%; border: 1px solid green;">' + value + "</div>";
+                                                    arrayDeCadenas = arrayDeCadenas + '<div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style=""><div style="margin: 0px 0px; display:inline-block;width: 300px;">' + value + "</div>";
+                                                            count++;
                                                 }
                                                 if(key == "habilidadesTecnicas") {
-                                                    arrayDeCadenas = arrayDeCadenas + '<div style="display:inline-block; margin: 0px ' +
-                                                            '0px; width:70%; border: 1px solid red;">' + value + "</div>";
+                                                    arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block; width: auto;">' + value + "</div>";
                                                 }
                                                 if(key == 'habilidadesBlandas'){
                                                     arrayDeCadenas = arrayDeCadenas + '</div></div>';
+                                                }
+                                                if(key == 'habilidadesBlandas' && countArray == count){
                                                     div.innerHTML = div.innerHTML + arrayDeCadenas;
                                                 }
                                             });
