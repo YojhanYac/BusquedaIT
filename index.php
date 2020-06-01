@@ -100,12 +100,21 @@
 
         <div id="Refresh"><?php 
             $count = 0;
+            $arrayBuff = [];
             foreach ($dataBase->mostrar("puestos") as $buff){
-                ?><div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style=""><?php
-                foreach($buff as $name => $value){
-                    if($name == "nombre" || $name == "habilidadesTecnicas"){
-                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;; width: auto;"><?php echo $value; ?></div>
-                <?php $count = 0; } else{ ?><div style="margin: 0px 0px; width: 300px; display:inline-block;"><?php echo $value; ?></div><?php $count++;}}}  ?></div></div> <?php } ?></div>
+                $arrayBuff []= $buff;
+            }
+                //print_r($arrayBuff);
+                $arrayBuff = array_reverse($arrayBuff);
+                //echo "<br>";
+                //print_r($arrayBuff);
+                foreach($arrayBuff as $name){
+                    ?><div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; justify-content: space-between;"><?php
+                    foreach($name as $asda => $asdb){
+                       // echo "asda = " . $asda . "..... asdb = " . $asdb . "<br>";
+                    if($asda == "nombre" || $asda == "habilidadesTecnicas"){
+                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;; width: auto;"><?php echo $asdb; ?></div><div style=""><button style="height: 100%;">Editar</button><button>Eliminar</button></div>
+                <?php $count = 0; } else{ ?><div style="margin: 0px 0px; width: 300px; display:inline-block;"><?php echo $asdb; ?></div><?php $count++;}}}  ?></div></div><?php } ?></div>
 
         <script type="text/javascript">
             $(document).ready(function () {
