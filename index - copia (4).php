@@ -194,24 +194,24 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- <form id="" name="form" method="post"> -->
+                                    <form id="addPanel" name="form" method="post">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" class="nombre" name="nombre" value="<?php echo $arrayData[1];?>">
+                                        <input type="text" id="nombre" name="nombre" value="<?php echo $arrayData[1];?>">
                                         <br>
                                         <label for="empresa">empresa</label>
-                                        <input type="text" class="empresa" name="empresa" value="<?php echo $arrayData[2];?>">
+                                        <input type="text" id="empresa" name="empresa" value="<?php echo $arrayData[2];?>">
                                         <br>
                                         <label for="nivel">nivel</label>
-                                        <input type="text" class="nivel" name="nivel" value="<?php echo $arrayData[3];?>">
+                                        <input type="text" id="nivel" name="nivel" value="<?php echo $arrayData[3];?>">
                                         <br>
                                         <label for="remuneracion">remuneracion</label>
-                                        <input type="text" class="remuneracion" name="remuneracion" value="<?php echo $arrayData[4];?>">
+                                        <input type="text" id="remuneracion" name="remuneracion" value="<?php echo $arrayData[4];?>">
                                         <br>
                                         <label for="habilidadesTecnicas">habilidadesTecnicas</label>
-                                        <input type="text" class="habilidadesTecnicas" name="habilidadesTecnicas" value="<?php echo $arrayData[5];?>">
+                                        <input type="text" id="habilidadesTecnicas" name="habilidadesTecnicas" value="<?php echo $arrayData[5];?>">
                                         <br>
                                         <label for="habilidadesBlandas">habilidadesBlandas</label>
-                                        <input type="text" class="habilidadesBlandas" name="habilidadesBlandas" value="<?php echo $arrayData[6];?>">
+                                        <input type="text" id="habilidadesBlandas" name="habilidadesBlandas" value="<?php echo $arrayData[6];?>">
                                         <br>
                                         
                                     </div>
@@ -221,8 +221,8 @@
                                             class="btn btn-secondary"
                                             data-dismiss="modal"
                                             id="btnClose">Close</button>
-                                        <button type="buttom" class="btn btn-primary btnEdit_ID" state="<?php echo $arrayData[0];?>" value= "<?php echo $arrayData[0];?>">Save changes</button>
-                                    <!-- </form> -->
+                                        <button type="submit" class="btn btn-primary" id="btnOk">Save changes</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -258,16 +258,6 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-
-                // $('#btnEdit_ID').click(function (e) {
-                //    alert(document.querySelector("#btnEdit_ID").value = "";);
-                // });
-
-                $('.btnEdit_ID').click(function () {
-                    var algo = $(this).attr("state");
-                    alert(algo);
-                });
-
                 $('#addPanel').submit(function (e) {
                     e.preventDefault();
                     $.ajax({

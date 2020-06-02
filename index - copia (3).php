@@ -124,7 +124,6 @@
             $indexEdit = 0;
             $arrayIndex = 0;
             $arrayData = [];
-            $arrayID = 0;
             foreach ($dataBase->mostrar("puestos") as $buff){
                 $arrayBuff []= $buff;
             }
@@ -135,9 +134,6 @@
 
                         $arrayNames [] = $name;
                         $arrayValues [] = $value;  
-                        if($name == "id"){
-                            $arrayID = $value;
-                        }
                         
            
                         //echo " a" . $arrayIndex . "b";
@@ -175,7 +171,7 @@
 
                             $arrayIndex++;
 
-                        if ($arrayIndex == 9) { $arrayData = $arrayValues; //echo $arrayData[2];
+                        if ($arrayIndex == 9) { $arrayData = $arrayValues; echo $arrayData[2];
                         ?>
 
                             <div
@@ -194,24 +190,24 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- <form id="" name="form" method="post"> -->
+                                    <form id="addPanel" name="form" method="post">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" class="nombre" name="nombre" value="<?php echo $arrayData[1];?>">
+                                        <input type="text" id="nombre" name="nombre" value="<?php echo $arrayData[2];?>">
                                         <br>
                                         <label for="empresa">empresa</label>
-                                        <input type="text" class="empresa" name="empresa" value="<?php echo $arrayData[2];?>">
+                                        <input type="text" id="empresa" name="empresa" value="<?php if($name == "empresa") {  };?>">
                                         <br>
                                         <label for="nivel">nivel</label>
-                                        <input type="text" class="nivel" name="nivel" value="<?php echo $arrayData[3];?>">
+                                        <input type="text" id="nivel" name="nivel" value="<?php if($name == "nivel") {  };?>">
                                         <br>
                                         <label for="remuneracion">remuneracion</label>
-                                        <input type="text" class="remuneracion" name="remuneracion" value="<?php echo $arrayData[4];?>">
+                                        <input type="text" id="remuneracion" name="remuneracion" value="<?php if($name == "remuneracion") {  };?>">
                                         <br>
                                         <label for="habilidadesTecnicas">habilidadesTecnicas</label>
-                                        <input type="text" class="habilidadesTecnicas" name="habilidadesTecnicas" value="<?php echo $arrayData[5];?>">
+                                        <input type="text" id="habilidadesTecnicas" name="habilidadesTecnicas" value="<?php if($name == "habilidadesTecnicas") {  };?>">
                                         <br>
                                         <label for="habilidadesBlandas">habilidadesBlandas</label>
-                                        <input type="text" class="habilidadesBlandas" name="habilidadesBlandas" value="<?php echo $arrayData[6];?>">
+                                        <input type="text" id="habilidadesBlandas" name="habilidadesBlandas" value="<?php if($name == "habilidadesBlandas") {  };?>">
                                         <br>
                                         
                                     </div>
@@ -221,8 +217,8 @@
                                             class="btn btn-secondary"
                                             data-dismiss="modal"
                                             id="btnClose">Close</button>
-                                        <button type="buttom" class="btn btn-primary btnEdit_ID" state="<?php echo $arrayData[0];?>" value= "<?php echo $arrayData[0];?>">Save changes</button>
-                                    <!-- </form> -->
+                                        <button type="submit" class="btn btn-primary" id="btnOk">Save changes</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -244,12 +240,11 @@
                         }
 
 
-                    if($name == "nombre" || $name == "habilidadesTecnicas"){
+                    if($name == "nombre" || $name == "habilidadesTecnicas" || $name = "id"){
                 //if($name == "nombre" || $name == "habilidadesTecnicas"){
 
-                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;"><?php echo $value; ?></div> <div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" data-target="<?php echo "#btnId_" . $arrayID; ?>">Editar</button><button style="width: 50%;">Eliminar</button></div>
-                <?php $count = 0; $arrayID = 0;}
-                    
+                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;"><?php echo $value; ?></div> <div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" data-target="#btnEdit">Editar1</button><button style="width: 50%;">Eliminar</button></div>
+                <?php $count = 0; }
                 
                 else{ ?><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;"><?php echo $value; ?></div><?php $count++;}}}  ?></div></div><?php } ?></div>
 
@@ -258,16 +253,6 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-
-                // $('#btnEdit_ID').click(function (e) {
-                //    alert(document.querySelector("#btnEdit_ID").value = "";);
-                // });
-
-                $('.btnEdit_ID').click(function () {
-                    var algo = $(this).attr("state");
-                    alert(algo);
-                });
-
                 $('#addPanel').submit(function (e) {
                     e.preventDefault();
                     $.ajax({
