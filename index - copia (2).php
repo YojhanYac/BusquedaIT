@@ -36,14 +36,35 @@
             crossorigin="anonymous">
         <title>Document</title>
     </head>
-    <body style="background: gray;">
-    <div class="navbar bg-light" style="margin: 1% 0.4% 0.25% 0.4%; border-radius: 0.25rem;">
-            <h1 style="width: 100%;">Bienvenido a BusquedasIT!</h1>
-</div>
+    <body style="background: gray; margin: 0px 5% 0px 0%!important;
+		padding: 0px 5% 0px 5%!important;
+		width: 100%!important;">
+        <h1>
+            Bienvenido a BusquedasIT!
+        </h1>
+<!--<div class="toast" id="cajita1" role="alert" aria-live="assertive" aria-atomic="true">
+  <div  class="toast-header">
+    <img src="" class="rounded mr-2" alt="...">
+    <strong class="mr-auto">Bootstrap</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div  class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+</div>-->
+
+
+<!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 1200px;  border: 5px solid green;"> -->
+  <!-- Position it -->
   <div class="" style="position: absolute; bottom: 0; right: 0; height: 100px; z-index: 1060; position: fixed;">
 
+    <!-- Then put toasts within -->
     <div class="toast" id="cajita1" data-delay="10000" style="position: relative; bottom: 0; right: 0; height: 100%;">
       <div class="toast-header" style="width: 1000px!important;">
+        <!--<img src="" class="rounded mr-2" alt="...">-->
         <strong class="mr-auto">BusquedasIT</strong>
         <small class="text-muted">2 seconds ago</small>
         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -54,17 +75,26 @@
         Se agregó correctamente!
       </div>
     </div>
+
   </div>
-        <div class="navbar navbar-expand-lg navbar-light bg-light" style="display:flex; justify-content: space-between; margin: 0.25% 0.4% 1% 0.4%; border-radius: 0.25rem;">
-        <div>
+<!-- </div> -->
+
+
+
+        <!-- Button trigger modal -->
+        <div class="navbar navbar-expand-lg navbar-light bg-light" style="display:flex; justify-content: space-between;">    
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Agregar puesto</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="">Gráficos</button></div> 
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="">Gráficos</button>
         
         <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     </div>
+
+
+
+        <!-- Modal -->
         <div
             class="modal fade"
             id="exampleModal"
@@ -118,76 +148,25 @@
         <div id="Refresh"><?php 
             $count = 0;
             $arrayBuff = [];
-            $arrayNames = [];
-            $arrayValues = [];
-            $indexCount = 0;
-            $indexEdit = 0;
             foreach ($dataBase->mostrar("puestos") as $buff){
                 $arrayBuff []= $buff;
             }
+                //print_r($arrayBuff);
                 $arrayBuff = array_reverse($arrayBuff);
-                foreach($arrayBuff as $buff){
-                    ?><div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><?php
-                    foreach($buff as $name => $value){
-                        $arrayNames = $name;
-                        $arrayValues = $value;
-                    if($name == "nombre" || $name == "habilidadesTecnicas"){
-                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;"><?php echo $value; ?></div> <div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" data-target="#btnEdit">Editar1</button><button style="width: 50%;">Eliminar</button></div>
-                <?php $count = 0; } else{ ?><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;"><?php echo $value; ?></div><?php $count++;}}}  ?></div></div><?php } ?></div>
-
-                <div
-            class="modal fade"
-            id="btnEdit"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Datos de puesto</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="addPanel" name="form" method="post">
-                            <label for="nombre">nombre</label>
-                            <input type="text" id="nombre" name="nombre">
-                            <br>
-                            <label for="empresa">empresa</label>
-                            <input type="text" id="empresa" name="empresa">
-                            <br>
-                            <label for="nivel">nivel</label>
-                            <input type="text" id="nivel" name="nivel">
-                            <br>
-                            <label for="remuneracion">remuneracion</label>
-                            <input type="text" id="remuneracion" name="remuneracion">
-                            <br>
-                            <label for="habilidadesTecnicas">habilidadesTecnicas</label>
-                            <input type="text" id="habilidadesTecnicas" name="habilidadesTecnicas">
-                            <br>
-                            <label for="habilidadesBlandas">habilidadesBlandas</label>
-                            <input type="text" id="habilidadesBlandas" name="habilidadesBlandas">
-                            <br>
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                data-dismiss="modal"
-                                id="btnClose">Close</button>
-                            <button type="submit" class="btn btn-primary" id="btnOk">Save changes</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+                //echo "<br>";
+                //print_r($arrayBuff);
+                foreach($arrayBuff as $name){
+                    ?><div class="card" style="border-bottom: 2px solid black;width: 100%; margin: 0.3% 0.3%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><?php
+                    foreach($name as $asda => $asdb){
+                       // echo "asda = " . $asda . "..... asdb = " . $asdb . "<br>";
+                    if($asda == "nombre" || $asda == "habilidadesTecnicas"){
+                        if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;"><?php echo $asdb; ?></div> <div style="width: 10%; min-width:200px;"><button style="width: 50%;">Editar</button><button style="width: 50%;">Eliminar</button></div>
+                <?php $count = 0; } else{ ?><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;"><?php echo $asdb; ?></div><?php $count++;}}}  ?></div></div><?php } ?></div>
 
         <script type="text/javascript">
+    /*    $(document).ready(function () {
+        $('#cajita1').toast('show');
+        });*/
             $(document).ready(function () {
                 $('#addPanel').submit(function (e) {
                     e.preventDefault();
@@ -225,8 +204,11 @@
                                             }
 
 
+                                          //  console.log(countArray);
 
+                                            //Buscar que se cargue o vea al principio de la lista el puesto ingresado
                                             var datas = JSON.parse(respuesta, function (key, value) {
+                                               //    console.log(countArray + " = " + count);
 
                                                 if(key == "nombre") {
                                                     arrayDeCadenas = arrayDeCadenas + '<div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style=""><div style="margin: 0px 0px; display:inline-block;width: 300px;">' + value + "</div>";
@@ -245,6 +227,7 @@
                                         }
                                     });
                                     $('#cajita1').toast('show');
+                               //     alert("Se agrego Correctamente!");
                             } else {
                                 alert("No se pudo agregar!");
                             }
