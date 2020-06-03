@@ -2,10 +2,10 @@
 
     require_once "clases/Puestos.php";
 
-    if($_POST["nombre"] != "")
+    if($_POST["id"] != "")
     {
         $Puesto = new Puestos;
-        $Puesto->insertar($_POST);
+        $Puesto->editar($_POST);
         echo json_encode(array('success' => "1"));
     }
     else {

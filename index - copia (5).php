@@ -1,6 +1,24 @@
 <?php
     require_once "clases/BaseDeDatos.php";
+
     $dataBase = new BaseDeDatos();
+
+//     function mostrarPuestos(){
+//     foreach ($dataBase->mostrar("puestos") as $buff){
+//         foreach($buff as $name => $value){
+//             echo $name . " = " . $value . "<br>";
+//         }
+//     }
+// }
+
+    // function editarPuesto($id) {
+    //     foreach($dataBase->editar("puestos", $id) as $buff){
+    //         foreach($buff as $name => $value){
+    //             echo $name . " = " . $value . "<br>";
+    //         }
+    //     }
+    // }
+
 ?>
 <!DOCTYPE html="html">
 <html lang="en" style="">
@@ -120,12 +138,17 @@
                         if($name == "id"){
                             $arrayID = $value;
                         }
-                        ?>
-                        <?php
+                        
+           
+                        //echo " a" . $arrayIndex . "b";
+
+                        //if($name == "created_at") { echo " a" . $arrayIndex . "b"; ?>
+                        
+                        <?php //}
 
                             $arrayIndex++;
 
-                        if ($arrayIndex == 9) { $arrayData = $arrayValues;
+                        if ($arrayIndex == 9) { $arrayData = $arrayValues; //echo $arrayData[2];
                         ?>
 
                             <div
@@ -144,6 +167,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <!-- <form class="editPanel" method="post" state="<?php //echo $arrayData[0];?>"> -->
                                     <form class="editPanel" name="form" method="post">
                                         <input type="text" hidden class="id" name="id" value="<?php echo $arrayData[0];?>">
                                         <label for="nombre">Nombre</label>
@@ -173,33 +197,75 @@
                                             data-dismiss="modal"
                                             id="btnClose">Close</button>
                                             <button type="submit" class="btn btn-primary btnEdit_ID">Save changes</button>
+
+                                        <!-- <button type="submit" class="btn btn-primary btnEdit_ID" name="id" state="<?php // echo $arrayData[0];?>" value= "<?php// echo $arrayData[0];?>">Save changes</button> -->
                                     </form>
                                 </div>
+
                             </div>
+                            <?php var_dump($arrayData);?>
+
                         </div>
+                        <?php var_dump($arrayData);?>
+
+
                     </div>
+
+                            
+                            
                             <?php
+                            
+                            
                             $arrayValues = [];
                             $arrayData = [];
+
+                            // echo "<h3>";
+                            // var_dump($arrayValues);
+                            // var_dump($arrayData);
+                            // echo "</h3>";
                             $arrayIndex = 0;
                         }
 
+
                     if($name == "nombre" || $name == "habilidadesTecnicas"){
+                //if($name == "nombre" || $name == "habilidadesTecnicas"){
+
                         if($count == 1 ){?><div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;"><?php echo $value; ?></div> <div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" data-target="<?php echo "#btnId_" . $arrayID; ?>">Editar</button><button style="width: 50%;">Eliminar</button></div>
-                <?php $count = 0; $arrayID = 0;}        
+                <?php $count = 0; $arrayID = 0;}
+                    
+                
                 else{ ?><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;"><?php echo $value; ?></div><?php $count++;}}}  ?></div></div><?php } ?></div>
+
+
+
 
         <script type="text/javascript">
             $(document).ready(function () {
+
+                // $('#btnEdit_ID').click(function (e) {
+                //    alert(document.querySelector("#btnEdit_ID").value = "";);
+                // });
+
+
+                // $('.btnEdit_ID').click(function () {
+                //     var algo = $(this).attr("state");
+                //     alert(algo);
+                // });
+
                 $('.editPanel').submit( function (elemento){
                     elemento.preventDefault();
+                    //console.log($(this).serialize()); //muestra los valores enviados a editarPuesto
                     $.ajax({
                         type: "POST",
                         url: 'editarPuesto.php',
                         data: $(this).serialize(),
                         success: function (response) {
+
                             console.log("REALIZADOO1");
+
                            var jsonData = JSON.parse(response);
+                       // var jsonData = response;
+                            //console.log(jsonData.success);
                             if (jsonData.success == "1") {
                                 console.log("REALIZADOO2");
                                 $.ajax({
@@ -214,27 +280,24 @@
                                             var count = 0;
                                             div.innerHTML = "";
                                             var arrayDeCadenas = [];
+
                                             var stringJSON = JSON.parse(respuesta);
                                             console.log("REALIZADOO3");
+                                          //  console.log(stringJSON);
+
+
                                             for(x in stringJSON){
                                                     countArray++;
                                             }
+                                      //      console.log(countArray);
+
+
+
+
                                             var datas = JSON.parse(respuesta, function (key, value) {
 
-
-
-
-                                                
-
-
-
-
-
-
-
-
                                                 if(key == "nombre") {
-                                                    arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; display:inline-block;width: 300px;">' + value + "</div>";
+                                                    arrayDeCadenas = arrayDeCadenas + '<div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style=""><div style="margin: 0px 0px; display:inline-block;width: 300px;">' + value + "</div>";
                                                             count++;
                                                 }
                                                 if(key == "habilidadesTecnicas") {
@@ -247,10 +310,18 @@
                                                     div.innerHTML = div.innerHTML + arrayDeCadenas;
                                                 }
                                             });
+
                                         }
                                     });
                                     $('#cajita1').toast('show');
                             } 
+                            // else {
+                            //     alert("No se pudo agregar!");
+                            // }
+
+
+                            
+
                         }
                     });
                 });
@@ -287,44 +358,32 @@
 
                                             var stringJSON = JSON.parse(respuesta);
 
+                                          //  console.log(stringJSON);
+
+
                                             for(x in stringJSON){
                                                     countArray++;
                                             }
+                                      //      console.log(countArray);
 
-                                            alert(countArray);
 
-                                            var arrayValue = [];
-                                            var indexValue = 0;
-                                            var arrayKey = [];
-                                            var indexKey = 0;
-                                            var countIndex = 0;
+
 
                                             var datas = JSON.parse(respuesta, function (key, value) {
-                                                // arrayValue.push(value);
-                                                // arrayKey.push(key);
 
-                                              //  console.log(key + " = " + value);
-
-                                                if(key == "nombre")
-                                                {
-                                                  //  console.log(value);
-                                                    arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; display:inline-block;width: 300px;">' + value + "</div>";
+                                                if(key == "nombre") {
+                                                    arrayDeCadenas = arrayDeCadenas + '<div class="card" style="border: 2px solid black;width: 100%;"><div class="card-body" style=""><div style="margin: 0px 0px; display:inline-block;width: 300px;">' + value + "</div>";
+                                                            count++;
                                                 }
-
-                                                if(key == "habilidadesTecnicas"){
-                                                    arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;">' + value + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" data-target="#btnId_' +  '">Editar</button><button style="width: 50%;">Eliminar</button></div>';
+                                                if(key == "habilidadesTecnicas") {
+                                                    arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block; width: auto;">' + value + "</div>";
                                                 }
-
-                                                if(key == "updated_at") {
+                                                if(key == 'habilidadesBlandas'){
                                                     arrayDeCadenas = arrayDeCadenas + '</div></div>';
-                                                    countIndex++;
                                                 }
-                                                if(key == "updated_at" && countIndex == countArray){
-                                                   // console.log(countIndex + " = " + countArray);
-
+                                                if(key == 'habilidadesBlandas' && countArray == count){
                                                     div.innerHTML = div.innerHTML + arrayDeCadenas;
                                                 }
-  
                                             });
 
                                         }

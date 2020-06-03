@@ -13,8 +13,8 @@ class Puestos {
     private $datos = [];
     private $nombres = [];
 
-    public function __construct($buff){
-    
+    public function insertar($buff){
+
         foreach($buff as $name => $value){
             $this->datos[] = $value;
             $this->nombres[] = $name;
@@ -22,6 +22,19 @@ class Puestos {
 
         $BaseDeDatos = new BaseDeDatos();
         $BaseDeDatos->insertar("puestos", $this->datos);
+
+    }
+
+
+
+    public function editar($buff){
+        foreach($buff as $name => $value){
+            $this->datos[] = $value;
+            $this->nombres[] = $name;
+        }
+
+        $BaseDeDatos = new BaseDeDatos();
+        $BaseDeDatos->editar("puestos", $this->datos);
     }
 
 

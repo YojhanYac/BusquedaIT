@@ -29,10 +29,11 @@ class BaseDeDatos {
         return false;
     }
 
-    public function editar($tabla, $id){
-        $resultado = $this->conexion->query("SELECT * FROM $tabla WHERE id = $id") or die($this->conexion->error);
+    public function editar($tabla, $datos){
+        //var_dump($datos);
+        $resultado = $this->conexion->query("UPDATE $tabla SET nombre = '$datos[1]' , empresa = '$datos[2]', nivel = '$datos[3]', remuneracion = '$datos[4]', habilidadesTecnicas  = '$datos[5]', habilidadesBlandas = '$datos[6]' WHERE id = '$datos[0]'") or die($this->conexion->error);
         if($resultado)
-            return $resultado->fetch_all(MYSQLI_ASSOC);
+                 return true;
         return false;
     }
 

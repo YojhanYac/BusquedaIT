@@ -291,8 +291,6 @@
                                                     countArray++;
                                             }
 
-                                            alert(countArray);
-
                                             var arrayValue = [];
                                             var indexValue = 0;
                                             var arrayKey = [];
@@ -300,31 +298,27 @@
                                             var countIndex = 0;
 
                                             var datas = JSON.parse(respuesta, function (key, value) {
-                                                // arrayValue.push(value);
-                                                // arrayKey.push(key);
+                                                arrayValue.push(value);
+                                                arrayKey.push(key);
+                                                countIndex++;
 
-                                              //  console.log(key + " = " + value);
-
-                                                if(key == "nombre")
-                                                {
-                                                  //  console.log(value);
+                                                if(key == "nombre") {
                                                     arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; display:inline-block;width: 300px;">' + value + "</div>";
+                                                            count++;
                                                 }
-
-                                                if(key == "habilidadesTecnicas"){
-                                                    arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;">' + value + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" data-target="#btnId_' +  '">Editar</button><button style="width: 50%;">Eliminar</button></div>';
+                                                if(key == "habilidadesTecnicas") {
+                                                    arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block; width: auto;">' + value + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" data-target="#btnId_' +  '">Editar</button><button style="width: 50%;">Eliminar</button></div>';
                                                 }
-
-                                                if(key == "updated_at") {
+                                                if(key == 'habilidadesBlandas'){
                                                     arrayDeCadenas = arrayDeCadenas + '</div></div>';
-                                                    countIndex++;
                                                 }
-                                                if(key == "updated_at" && countIndex == countArray){
-                                                   // console.log(countIndex + " = " + countArray);
-
+                                                if(arrayKey == "updated_at"){
+                                                    console.log(arrayValue + arrayKey);
+                                                    countIndex = 0;
+                                                }
+                                                if(key == 'habilidadesBlandas' && countArray == count){
                                                     div.innerHTML = div.innerHTML + arrayDeCadenas;
                                                 }
-  
                                             });
 
                                         }
