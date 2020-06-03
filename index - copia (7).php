@@ -221,6 +221,18 @@
                                             }
                                             var datas = JSON.parse(respuesta, function (key, value) {
 
+
+
+
+                                                
+
+
+
+
+
+
+
+
                                                 if(key == "nombre") {
                                                     arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; display:inline-block;width: 300px;">' + value + "</div>";
                                                             count++;
@@ -269,6 +281,7 @@
                                         success: function (respuesta) {
                                             var div = document.querySelector('#Refresh');
                                             var countArray = 0;
+                                            var count = 0;
                                             div.innerHTML = "";
                                             var arrayDeCadenas = [];
 
@@ -282,25 +295,16 @@
 
                                             var arrayValue = [];
                                             var indexValue = 0;
-                                            var arrayValue1 = [];
+                                            var arrayKey = [];
                                             var indexKey = 0;
-                                            var arrayKey1 = [];
                                             var countIndex = 0;
-                                            var count = 0;
-                                            var arrayData1 = [];
 
                                             var datas = JSON.parse(respuesta, function (key, value) {
-
-                                                if(count != 1){
-                                                arrayValue1.push(value);    
-                                                }
+                                                // arrayKey.push(key);
 
                                               //  console.log(key + " = " + value);
-                                                if(key != "id")
+                                                if(key == "id")
                                                 {
-                                                    count = 0;
-                                                }
-                                                else{
                                                     arrayValue.push(value);
                                                 }
 
@@ -311,34 +315,18 @@
                                                 }
 
                                                 if(key == "habilidadesTecnicas"){
-                                                    // arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + value + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" state="HOLA JQUERY!" id="btnId_' + arrayValue[indexValue] + '" data-target="#btnId_' + arrayValue[indexValue] + '">Editar</button><button style="width: 50%;">Eliminar</button></div>';
-                                                    arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + value + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" state="HOLA JQUERY!" id="222" data-target="333">Editar</button><button style="width: 50%;">Eliminar</button></div>';
-                                                    console.log(arrayValue[indexValue] + " = " + indexValue);
+                                                    arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + value + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" data-target="#btnId_' + arrayValue[indexValue] + '">Editar</button><button style="width: 50%;">Eliminar</button></div>';
+                                                    console.log(arrayValue[indexValue]);
 
                                                     indexValue++;
                                                 }
 
                                                 if(key == "updated_at") {
                                                     arrayDeCadenas = arrayDeCadenas + '</div></div>';
-                                                    count = 1;  
-                                                    arrayData1[arrayValue[countIndex]] = arrayValue1;
-                                                    arrayValue1 = [];
                                                     countIndex++;
                                                 }
                                                 if(key == "updated_at" && countIndex == countArray){
                                                    // console.log(countIndex + " = " + countArray);
-                                                    //console.log(arrayData1);
-                                                  //  console.log(arrayValue);
-                                                    
-                                                    console.log(arrayData1[1]);
-
-
-
-
-
-
-
-
 
                                                     div.innerHTML = div.innerHTML + arrayDeCadenas;
                                                 }
@@ -357,11 +345,6 @@
                     });
                 });
             });
-
-            $('#333').click(function (a) {
-                    var valor = $(this).attr('state');
-                    console.log("hola");
-                });
         </script>
         <script
             src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
