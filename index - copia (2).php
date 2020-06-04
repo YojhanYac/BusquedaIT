@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        
+        ----
         <div class="navbar navbar-expand-lg navbar-light bg-light" style="display:flex; justify-content: space-between; margin: 0.25% 0.4% 1% 0.4%; border-radius: 0.25rem;">
             <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Agregar puesto</button>
@@ -40,7 +40,7 @@
             </form>
         </div>
 
-        
+        ----
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        
+        ----
         <div id="Refresh"><?php
 
             $count = 0;
@@ -149,7 +149,7 @@
 
                         }
 
-                        
+                        ----
                         if($name == "nombre" || $name == "habilidadesTecnicas"){
                             if($count == 1 ){?>
 
@@ -179,7 +179,7 @@
 
         </div>
 
-        
+        ----
 
         <script type="text/javascript">
             $(document).ready(function (){
@@ -241,12 +241,12 @@
                                             }
                                             if(key == "nombre")
                                             {
-                                                arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;">' + value + '</div>';
+                                                arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;">' + value + "</div>";
                                             }
                                             if(key == "habilidadesBlandas"){
 
                                                 arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + arrayValue1[5] + '</div><div style="width: 10%; min-width:200px;"><button data-toggle="modal" data-target="#btnId_' + arrayValue[indexValue] + '" state="HOLA JQUERY!" id="">Editar</button><button style="width: 50%;">Eliminar</button></div>';
-                                                arrayDeCadenas = arrayDeCadenas + '<div class="modal fade" id="btnId_' + arrayValue[indexValue] + '" tabindex="-1" role="dialog" aria-labelledby="editarLabel_'+ arrayValue[indexValue] +'" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="editarLabel_'+ arrayValue[indexValue] +'">Datos de puesto</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">hora</span></button></div><div class="modal-body"><form class="editPanel" name="form" method="post"><input type="text" hidden class="id" name="id" value="algo"><label for="nombre">Nombre</label><input type="text" class="nombre" name="nombre" value="' + arrayValue1[1] + '"><br><label for="empresa">empresa</label><input type="text" class="empresa" name="empresa" value="' + arrayValue1[2] + '"><br><label for="nivel">nivel</label> <input type="text" class="nivel" name="nivel" value="' + arrayValue1[3] + '"><br><label for="remuneracion">remuneracion</label><input type="text" class="remuneracion" name="remuneracion" value="' + arrayValue1[4] + '"><br><label for="habilidadesTecnicas">habilidadesTecnicas</label><input type="text" class="habilidadesTecnicas" name="habilidadesTecnicas" value="' + arrayValue1[5] + '"><br><label for="habilidadesBlandas">habilidadesBlandas</label><input type="text" class="habilidadesBlandas" name="habilidadesBlandas" value="' + arrayValue1[6] + '"><br><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button><button type="submit" class="btn btn-primary btnEdit_ID">Save changes</button></div></form></div></div></div></div>';
+                                                arrayDeCadenas = arrayDeCadenas + '<div class="modal fade" id="btnId_' + arrayValue[indexValue] + '" tabindex="-1" role="dialog" aria-labelledby="editarLabel_'+ arrayValue[indexValue] +'" aria-hidden="true"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="editarLabel_'+ arrayValue[indexValue] +'">Datos de puesto</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">hora</span> </button> </div> <div class="modal-body"> <form class="editPanel" name="form" method="post"> <input type="text" hidden class="id" name="id" value="algo"> <label for="nombre">Nombre</label> <input type="text" class="nombre" name="nombre" value="' + arrayValue1[1] + '"> <br> <label for="empresa">empresa</label> <input type="text" class="empresa" name="empresa" value="' + arrayValue1[2] + '"> <br> <label for="nivel">nivel</label> <input type="text" class="nivel" name="nivel" value="' + arrayValue1[3] + '"> <br> <label for="remuneracion">remuneracion</label> <input type="text" class="remuneracion" name="remuneracion" value="' + arrayValue1[4] + '"> <br> <label for="habilidadesTecnicas">habilidadesTecnicas</label> <input type="text" class="habilidadesTecnicas" name="habilidadesTecnicas" value="' + arrayValue1[5] + '"> <br> <label for="habilidadesBlandas">habilidadesBlandas</label> <input type="text" class="habilidadesBlandas" name="habilidadesBlandas" value="' + arrayValue1[6] + '"> <br> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button> <button type="submit" class="btn btn-primary btnEdit_ID">Save changes</button> </div></form> </div> </div> </div>';
                                                 console.log(arrayDeCadenas);
                                                 indexValue++;
 
@@ -266,7 +266,6 @@
                                         });
 
                                     }
-
                                 });
                                     
                                 $('#cajita1').toast('show');
@@ -276,21 +275,15 @@
                     });
                 });
 
-                
-
-                $('#addPanel').submit(function (e){
-
+                $('#addPanel').submit(function (e) {
                     e.preventDefault();
                     $.ajax({
-
                         type: "POST",
                         url: 'agregarPuesto.php',
                         data: $(this).serialize(),
-
-                        success: function (response){
-
+                        success: function (response) {
                             var jsonData = JSON.parse(response);
-                            if (jsonData.success == "1"){
+                            if (jsonData.success == "1") {
 
                                 document.querySelector("#nombre").value = "";
                                 document.querySelector("#empresa").value = "";
@@ -299,93 +292,112 @@
                                 document.querySelector("#habilidadesTecnicas").value = "";
                                 document.querySelector("#habilidadesBlandas").value = "";
 
-                                $.ajax({
+                                    $.ajax({
+                                        type: "POST",
+                                        url: 'actualizarLista.php',
+                                        data: {
+                                            tabla: "puestos"
+                                        },
+                                        success: function (respuesta) {
+                                            var div = document.querySelector('#Refresh');
+                                            var countArray = 0;
+                                            div.innerHTML = "";
+                                            var arrayDeCadenas = [];
 
-                                    type: "POST",
-                                    url: 'actualizarLista.php',
-                                    data: {
-                                        tabla: "puestos"
-                                    },
+                                            var stringJSON = JSON.parse(respuesta);
 
-                                    success: function (respuesta){
+                                            for(x in stringJSON){
+                                                    countArray++;
+                                            }
 
-                                        var div = document.querySelector('#Refresh');
-                                        var countArray = 0;
-                                        var arrayDeCadenas = [];
-                                        var stringJSON = JSON.parse(respuesta);
-                                        div.innerHTML = "";
+                                            //alert(countArray);
 
-                                        for(x in stringJSON){
-                                            countArray++;
-                                        }
+                                            var arrayValue = [];
+                                            var indexValue = 0;
+                                            var arrayValue1 = [];
+                                            var indexKey = 0;
+                                            var arrayKey1 = [];
+                                            var countIndex = 0;
+                                            var count = 0;
+                                            var arrayData1 = [];
 
-                                        var arrayValue = [];
-                                        var indexValue = 0;
-                                        var arrayValue1 = [];
-                                        var indexKey = 0;
-                                        var arrayKey1 = [];
-                                        var countIndex = 0;
-                                        var count = 0;
-                                        var arrayData1 = [];
-                                        var datas = JSON.parse(respuesta, function (key, value) {
+                                            var datas = JSON.parse(respuesta, function (key, value) {
 
-                                            if(count != 1){
+                                                if(count != 1){
                                                 arrayValue1.push(value);    
-                                            }
-                                            if(key != "id")
-                                            {
-                                                count = 0;
-                                            }
-                                            else{
-                                                arrayValue.push(value);
-                                            }
-                                            if(key == "nombre")
-                                            {
-                                                arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;">' + value + "</div>";
-                                            }
-                                            if(key == "habilidadesBlandas"){
+                                                }
 
-                                                arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + arrayValue1[5] + '</div><div style="width: 10%; min-width:200px;"><button type="submit" data-toggle="modal" data-target="#btnId_' + arrayValue[indexValue] + '" state="HOLA JQUERY!" id="">Editar</button><button style="width: 50%;">Eliminar</button></div>';
-                                                arrayDeCadenas = arrayDeCadenas + '<div class="modal fade" id="btnId_' + arrayValue[indexValue] + '" tabindex="-1" role="dialog" aria-labelledby="editarLabel_'+ arrayValue[indexValue]  + '" aria-hidden="true"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="editarLabel_'+ arrayValue[indexValue]  + '">Datos de puesto</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">hora</span> </button> </div> <div class="modal-body"> <form class="editPanel" name="form" method="post"> <input type="text" hidden class="id" name="id" value="algo"> <label for="nombre">Nombre</label> <input type="text" class="nombre" name="nombre" value="' + arrayValue1[1] + '"> <br> <label for="empresa">empresa</label> <input type="text" class="empresa" name="empresa" value="' + arrayValue1[2] + '"> <br> <label for="nivel">nivel</label> <input type="text" class="nivel" name="nivel" value="' + arrayValue1[3] + '"> <br> <label for="remuneracion">remuneracion</label> <input type="text" class="remuneracion" name="remuneracion" value="' + arrayValue1[4] + '"> <br> <label for="habilidadesTecnicas">habilidadesTecnicas</label> <input type="text" class="habilidadesTecnicas" name="habilidadesTecnicas" value="' + arrayValue1[5] + '"> <br> <label for="habilidadesBlandas">habilidadesBlandas</label> <input type="text" class="habilidadesBlandas" name="habilidadesBlandas" value="' + arrayValue1[6] + '"> <br> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button> <button type="submit" class="btn btn-primary btnEdit_ID">Save changes</button> </div></form> </div> </div> </div>';
-                                                indexValue++;
+                                              //  console.log(key + " = " + value);
+                                                if(key != "id")
+                                                {
+                                                    count = 0;
+                                                }
+                                                else{
+                                                    arrayValue.push(value);
+                                                }
 
-                                            }
-                                            if(key == "updated_at"){
+                                                if(key == "nombre")
+                                                {
+                                                  //  console.log(value);
+                                                    arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;">' + value + "</div>";
+                                                }
 
-                                                arrayDeCadenas = arrayDeCadenas + '</div></div>';
-                                                count = 1;  
-                                                arrayData1[arrayValue[countIndex]] = arrayValue1;
-                                                arrayValue1 = [];
-                                                countIndex++;
+                                                if(key == "habilidadesBlandas"){
+                                                     arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + arrayValue1[5] + '</div><div style="width: 10%; min-width:200px;"><button type="submit" data-toggle="modal" data-target="#btnId_' + arrayValue[indexValue] + '" state="HOLA JQUERY!" id="">Editar</button><button style="width: 50%;">Eliminar</button></div>';
+                                                   // arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + value + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" state="HOLA JQUERY!" id="333" data-target="333">Editar</button><button style="width: 50%;">Eliminar</button></div>';
+                                                    //console.log(arrayValue[indexValue] + " = " + indexValue);
+                                                    console.log(arrayValue1);
 
-                                            }
-                                            if(key == "updated_at" && countIndex == countArray){
-                                                div.innerHTML = div.innerHTML + arrayDeCadenas;
-                                            }
-                                        });
+                                                    arrayDeCadenas = arrayDeCadenas + '<div class="modal fade" id="btnId_' + arrayValue[indexValue] + '" tabindex="-1" role="dialog" aria-labelledby="editarLabel_'+ arrayValue[indexValue]  + '" aria-hidden="true"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="editarLabel_'+ arrayValue[indexValue]  + '">Datos de puesto</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">hora</span> </button> </div> <div class="modal-body"> <form class="editPanel" name="form" method="post"> <input type="text" hidden class="id" name="id" value="algo"> <label for="nombre">Nombre</label> <input type="text" class="nombre" name="nombre" value="' + arrayValue1[1] + '"> <br> <label for="empresa">empresa</label> <input type="text" class="empresa" name="empresa" value="' + arrayValue1[2] + '"> <br> <label for="nivel">nivel</label> <input type="text" class="nivel" name="nivel" value="' + arrayValue1[3] + '"> <br> <label for="remuneracion">remuneracion</label> <input type="text" class="remuneracion" name="remuneracion" value="' + arrayValue1[4] + '"> <br> <label for="habilidadesTecnicas">habilidadesTecnicas</label> <input type="text" class="habilidadesTecnicas" name="habilidadesTecnicas" value="' + arrayValue1[5] + '"> <br> <label for="habilidadesBlandas">habilidadesBlandas</label> <input type="text" class="habilidadesBlandas" name="habilidadesBlandas" value="' + arrayValue1[6] + '"> <br> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button> <button type="submit" class="btn btn-primary btnEdit_ID">Save changes</button> </div></form> </div> </div> </div>';
 
-                                    }
 
-                                });
+                                                    indexValue++;
+                                                }
 
-                                $('#cajita1').toast('show');
+                                                if(key == "updated_at") {
+                                                    arrayDeCadenas = arrayDeCadenas + '</div></div>';
+                                                    count = 1;  
+                                                    arrayData1[arrayValue[countIndex]] = arrayValue1;
+                                                    arrayValue1 = [];
+                                                    countIndex++;
+                                                }
+                                                if(key == "updated_at" && countIndex == countArray){
+                                                   // console.log(countIndex + " = " + countArray);
+                                                    //console.log(arrayData1);
+                                                  //  console.log(arrayValue);
+                                                    
+                                                   // console.log(arrayData1[1]);
+                                                    div.innerHTML = div.innerHTML + arrayDeCadenas;
+                                                }
+  
+                                            });
 
+                                        }
+                                    });
+
+                                    $('#cajita1').toast('show');
+
+                            } else {
+                                alert("No se pudo agregar!");
                             }
                         }
                     });
-                });                
+                });
             });
 
-            $('#editar').click(function (a){
-
-                var valor = $(this).attr('state');
-                console.log("hola");
-
-            });
-
+            $('#editar').click(function (a) {
+                    var valor = $(this).attr('state');
+                    console.log("hola");
+                });
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
 
     </body>
 </html>
