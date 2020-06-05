@@ -44,5 +44,16 @@ class Puestos {
         }
     }
 
-}
+    public function eliminar($buff){
+        foreach($buff as $name => $value){
+            $this->datos[] = $value;
+            $this->nombres[] = $name;
+        }
+
+        $BaseDeDatos = new BaseDeDatos();
+        $BaseDeDatos->eliminar("puestos", $this->datos);
+
+        }
+    }
+
 ?>

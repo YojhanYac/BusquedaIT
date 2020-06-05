@@ -53,6 +53,14 @@ class BaseDeDatos {
         return false;
     }
 
+    public function eliminar($tabla, $id){
+        //var_dump($datos);
+        $resultado = $this->conexion->query("DELETE FROM $tabla WHERE id = $id") or die($this->conexion->error);
+        if($resultado)
+                 return true;
+        return false;
+    }
+
 
 
 }
