@@ -14,16 +14,32 @@ class BaseDeDatos {
     }
 
     public function insertar($tabla, $datos) {
+
+        // $validate = $this->mostrarPorId($tabla, $datos['id']);
+        //var_dump($datos);
+        // if(empty($validate)){
+        //     return false;
+        // }
+        // else {
+
             $resultado = $this->conexion->query("
             INSERT INTO $tabla (nombre, empresa, nivel, remuneracion, habilidadesTecnicas, habilidadesBlandas)
              VALUES ('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]')") or die($this->conexion->error);
             if($resultado)
                 return true;
             return false;
+        // }
     }
 
     public function mostrar($tabla){
         $resultado = $this->conexion->query("SELECT * FROM $tabla") or die($this->conexion->error);
+        if($resultado)
+            return $resultado->fetch_all(MYSQLI_ASSOC);
+        return false;
+    }
+
+    public function mostrarPorId($tabla, $id){
+        $resultado = $this->conexion->query("SELECT * FROM $tabla WHERE id = $id") or die($this->conexion->error);
         if($resultado)
             return $resultado->fetch_all(MYSQLI_ASSOC);
         return false;

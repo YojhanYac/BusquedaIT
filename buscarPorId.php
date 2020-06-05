@@ -3,8 +3,8 @@
     require_once "clases/BaseDeDatos.php";
 
     $resultado = new BaseDeDatos();
-    $valores = $resultado->mostrar($_POST['tabla']);
-    $valores = array_reverse($valores);
+    $valores = $resultado->mostrarPorId($_POST['tabla'], $_POST['id']);
+    // $valores = $resultado->mostrarPorId("puestos", 9);
 
 
     if($valores){
@@ -14,7 +14,4 @@
     else{
         return false;
     }
-
 ?>
-
-
