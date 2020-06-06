@@ -2,6 +2,18 @@
     /* overflow: scroll; */
 }
 
+input {
+    width: 90%!important;
+    margin: 1% 5%;
+}
+
+.modal-body{
+    padding-bottom: 0px;
+}
+
+form{
+    margin: 0px 0px;
+}
 .bodyy{
     /* padding-right: 0px!important; */
 }

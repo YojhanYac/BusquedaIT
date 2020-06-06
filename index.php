@@ -10,10 +10,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
-        <link rel="icon" type="image/png" href="/imágenes/mifavicon.png">
+        <link rel="icon" type="image/png" href="icon/icon.svg">
         <title>BusquedaIT</title>
     </head>
     <body style="background: gray; width: 100%;">
@@ -43,8 +42,8 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficosModal">Gráficos</button>
             </div> 
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
             </form>
         </div>
 
@@ -53,27 +52,27 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Datos de puesto</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo puesto</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <form id="addPanel" name="form" method="post">
                             <input type="text" hidden id="id" name="nombre" value="">
-                            <label for="nombre">nombre</label>
-                            <input type="text" id="nombre" name="nombre"  value=""><br>
-                            <label for="empresa">empresa</label>
-                            <input type="text" id="empresa" name="empresa"  value=""><br>
-                            <label for="nivel">nivel</label>
-                            <input type="text" id="nivel" name="nivel"  value=""><br>
-                            <label for="remuneracion">remuneracion</label>
-                            <input type="text" id="remuneracion" name="remuneracion"  value=""><br>
-                            <label for="habilidadesTecnicas">habilidadesTecnicas</label>
-                            <input type="text" id="habilidadesTecnicas" name="habilidadesTecnicas"  value=""><br>
-                            <label for="habilidadesBlandas">habilidadesBlandas</label>
-                            <input type="text" id="habilidadesBlandas" name="habilidadesBlandas"  value=""><br>      
+                            <!-- <label for="nombre">Nombre</label> -->
+                            <input type="text" id="nombre" name="nombre" value="" placeholder="Puesto"><br>
+                            <!-- <label for="empresa">Empresa</label> -->
+                            <input type="text" id="empresa" name="empresa" value="" placeholder="Empresa"><br>
+                            <!-- <label for="nivel">Nivel</label> -->
+                            <input type="text" id="nivel" name="nivel" value="" placeholder="Nivel"><br>
+                            <!-- <label for="remuneracion">Remuneracion</label> -->
+                            <input type="text" id="remuneracion" name="remuneracion" value="" placeholder="Remuneración"><br>
+                            <!-- <label for="habilidadesTecnicas">Habilidades Tecnicas</label> -->
+                            <input type="text" id="habilidadesTecnicas" name="habilidadesTecnicas" value="" placeholder="Habilidades Técnicas"><br>
+                            <!-- <label for="habilidadesBlandas">Habilidades Blandas</label> -->
+                            <input type="text" id="habilidadesBlandas" name="habilidadesBlandas" value="" placeholder="Habilidades Blandas"><br><br>    
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                                <button type="submit" class="btn btn-primary" id="btnOk">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Cerrar</button>
+                                <button type="submit" class="btn btn-primary" id="btnOk">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -85,15 +84,15 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="graficosModalLabel">Datos de puesto</h5>
+                        <h5 class="modal-title" id="graficosModalLabel">Gráficos</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
 
                         <br><p>Próximadamente gráficos</p><br>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnOk">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Cerrar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnOk">Atrás</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +104,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Editar Puesto</h5>
+                        <h5 class="modal-title" id="editModalLabel">Datos del puesto</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
@@ -124,8 +123,8 @@
                             <label for="habilidadesBlandas">habilidadesBlandas</label>
                             <input type="text" id="edit_habilidadesBlandas" name="habilidadesBlandas" value=""><br>      
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="edit_btnClose">Close</button>
-                                <button type="submit" class="btn btn-primary" id="edit_btnOk">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="edit_btnClose">Cerrar</button>
+                                <button type="submit" class="btn btn-primary" id="edit_btnOk">Guardar cambios</button>
                             </div>
                         </form>
                     </div>
@@ -137,7 +136,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Eliminar Puesto</h5>
+                        <h5 class="modal-title" id="deleteModalLabel">Eliminar puesto</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
@@ -146,7 +145,7 @@
                             <div id="dato_nombre"></div>
                             <div id="dato_habilidad"></div><br>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Atrás</button>
                                 <!-- <button type="submit" class="btn btn-primary" onclick="eliminarPuesto(<?php //echo $arrayID;?>)" >Confirmar</button> -->
                                 <button type="submit" class="btn btn-primary" >Confirmar</button>
                             </div>
@@ -254,7 +253,7 @@
                                     success: function (respuesta){
 
                                         if(respuesta){
-                                            document.querySelector("#mensajeToast").innerHTML = "Se agregó correctamente!";
+                                            // document.querySelector("#mensajeToast").innerHTML = "Se agregó correctamente!";
                                             console.log("exito deletePanel: ingresamos a la funcion de refrescar datos");
 
                                         var div = document.querySelector('#Refresh');
