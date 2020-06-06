@@ -58,17 +58,11 @@
                     <div class="modal-body">
                         <form id="addPanel" name="form" method="post">
                             <input type="text" hidden id="id" name="nombre" value="">
-                            <!-- <label for="nombre">Nombre</label> -->
                             <input type="text" id="nombre" name="nombre" value="" placeholder="Puesto"><br>
-                            <!-- <label for="empresa">Empresa</label> -->
                             <input type="text" id="empresa" name="empresa" value="" placeholder="Empresa"><br>
-                            <!-- <label for="nivel">Nivel</label> -->
                             <input type="text" id="nivel" name="nivel" value="" placeholder="Nivel"><br>
-                            <!-- <label for="remuneracion">Remuneracion</label> -->
                             <input type="text" id="remuneracion" name="remuneracion" value="" placeholder="Remuneración"><br>
-                            <!-- <label for="habilidadesTecnicas">Habilidades Tecnicas</label> -->
                             <input type="text" id="habilidadesTecnicas" name="habilidadesTecnicas" value="" placeholder="Habilidades Técnicas"><br>
-                            <!-- <label for="habilidadesBlandas">Habilidades Blandas</label> -->
                             <input type="text" id="habilidadesBlandas" name="habilidadesBlandas" value="" placeholder="Habilidades Blandas"><br><br>    
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Cerrar</button>
@@ -99,7 +93,7 @@
             </div>
         </div>
 
-        <!-- Modal que será llamado al hacer click en "Editar", se visualizaran los datos del puesto seleccionado -->
+        <!-- MODALQUE SERÁ LLAMADO AL HACER CLICL EN "Editar", SE VISUALIZARAN LOS DATOS DEL PUESTO SELECCIONADO -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -110,18 +104,12 @@
                     <div class="modal-body">
                         <form id="editPanel" name="form" method="post">
                             <input type="text" hidden id="edit_id" name="id" value="">
-                            <label for="nombre">nombre</label>
-                            <input type="text" id="edit_nombre" name="nombre" value=""><br>
-                            <label for="empresa">empresa</label>
-                            <input type="text" id="edit_empresa" name="empresa" value=""><br>
-                            <label for="nivel">nivel</label>
-                            <input type="text" id="edit_nivel" name="nivel" value=""><br>
-                            <label for="remuneracion">remuneracion</label>
-                            <input type="text" id="edit_remuneracion" name="remuneracion" value=""><br>
-                            <label for="habilidadesTecnicas">habilidadesTecnicas</label>
-                            <input type="text" id="edit_habilidadesTecnicas" name="habilidadesTecnicas" value=""><br>
-                            <label for="habilidadesBlandas">habilidadesBlandas</label>
-                            <input type="text" id="edit_habilidadesBlandas" name="habilidadesBlandas" value=""><br>      
+                            <input type="text" id="edit_nombre" name="nombre" value="" placeholder="Nombre"><br>
+                            <input type="text" id="edit_empresa" name="empresa" value="" placeholder="Empresa"><br>
+                            <input type="text" id="edit_nivel" name="nivel" value="" placeholder="Nivel"><br>
+                            <input type="text" id="edit_remuneracion" name="remuneracion" value="" placeholder="Remuneración"><br>
+                            <input type="text" id="edit_habilidadesTecnicas" name="habilidadesTecnicas" value="" placeholder="Habilidades técnicas"><br>
+                            <input type="text" id="edit_habilidadesBlandas" name="habilidadesBlandas" value="" placeholder="Habilidades Blandas"><br>      
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="edit_btnClose">Cerrar</button>
                                 <button type="submit" class="btn btn-primary" id="edit_btnOk">Guardar cambios</button>
@@ -132,6 +120,7 @@
             </div>
         </div>
 
+        <!-- MODAL QUE SERÁ LLAMADO AL HACER CLICK EN "Eliminar", SE VISUALIZARAN LOS DATOS DEL PUESTO SELECCIONADO A ELIMINAR -->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -146,7 +135,6 @@
                             <div id="dato_habilidad"></div><br>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Atrás</button>
-                                <!-- <button type="submit" class="btn btn-primary" onclick="eliminarPuesto(<?php //echo $arrayID;?>)" >Confirmar</button> -->
                                 <button type="submit" class="btn btn-primary" >Confirmar</button>
                             </div>
                         </form>
@@ -155,17 +143,11 @@
             </div>
         </div>
 
-        <!-- IMPRIME TODOS LOS PUESTOS CARGADOS A LA BASE DE DATOS -->
+        <!-- SE IMPRIMEN TODOS LOS PUESTOS CARGADOS EN LA BASE DE DATOS -->
         <div id="Refresh"><?php
 
             $count = 0;
             $arrayBuff = [];
-            $arrayNames = [];
-            $arrayValues = [];
-            $indexCount = 0;
-            $indexEdit = 0;
-            $arrayIndex = 0;
-            $arrayData = [];
             $arrayID = 0;
 
             foreach ($dataBase->mostrar("puestos") as $buff){
@@ -181,25 +163,9 @@
 
                     foreach($buff as $name => $value){
 
-                        $arrayNames [] = $name;
-                        $arrayValues [] = $value;
-
                         if($name == "id"){
                             $arrayID = $value;
-                        }
-
-                        $arrayIndex++;
-                    
-                        if ($arrayIndex == 9) {
-                        
-                            $arrayData = $arrayValues;
-                            $arrayValues = [];
-                            $arrayData = [];
-                            $arrayIndex = 0;
-
-                        }
-
-                        
+                        }                        
                         if($name == "nombre" || $name == "habilidadesTecnicas"){
                             if($count == 1 ){?>
 
@@ -210,7 +176,7 @@
                             else{ ?>
 
                                 <div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_<?php echo $arrayID; ?>"><?php
-                                    echo $value; ?>
+                                    echo $value;?>
                                 </div><?php
                             
                                 $count++;
@@ -224,15 +190,12 @@
 
 
         <script type="text/javascript">
-            
+                
+            // FUNCIÓN QUE ELIMINA EL PUESTO SELECIONADO, Y LUEGO ACTUALIZA LA VISTA DE PUESTOS
             $('#deletePanel').submit( function (a){
 
                 a.preventDefault();
                 var puesto_id = this.id.value;
-
-                console.log("Estaría eliminado");
-                console.log("Se hizo submit con el boton del form y estamos en deletePanel para borrar el puesto");
-                console.log(this.id.value);
 
                 $.ajax({
                     type: "POST",
@@ -243,98 +206,78 @@
                     success: function (respuesta){
 
                         $.ajax({
+                            type: "POST",
+                            url: 'actualizarLista.php',
+                            data: {
+                                tabla: "puestos"
+                            },
+                            success: function (respuesta){
 
-                                    type: "POST",
-                                    url: 'actualizarLista.php',
-                                    data: {
-                                        tabla: "puestos"
-                                    },
+                                if(respuesta){
 
-                                    success: function (respuesta){
+                                    var arrayText = []; arrayId = []; arrayValue = []; countArray = 0; indexValue = 0; countIndex = 0; count = 0;
 
-                                        if(respuesta){
-                                            // document.querySelector("#mensajeToast").innerHTML = "Se agregó correctamente!";
-                                            console.log("exito deletePanel: ingresamos a la funcion de refrescar datos");
+                                    var stringJSON = JSON.parse(respuesta);
+                                    var div = document.querySelector('#Refresh');
 
-                                        var div = document.querySelector('#Refresh');
-                                        var countArray = 0;
-                                        var arrayDeCadenas = [];
-                                        var stringJSON = JSON.parse(respuesta);
-                                        div.innerHTML = "";
+                                    div.innerHTML = "";
 
-                                        for(x in stringJSON){
-                                            countArray++;
-                                        }
-
-                                        var arrayValue = [];
-                                        var indexValue = 0;
-                                        var arrayValue1 = [];
-                                        var indexKey = 0;
-                                        var arrayKey1 = [];
-                                        var countIndex = 0;
-                                        var count = 0;
-                                        var arrayData1 = [];
-                                        var datas = JSON.parse(respuesta, function (key, value) {
-
-                                            if(count != 1){
-                                                arrayValue1.push(value);    
-                                            }
-                                            if(key != "id")
-                                            {
-                                                count = 0;
-                                            }
-                                            else{
-                                                arrayValue.push(value);
-                                            }
-                                            if(key == "nombre")
-                                            {
-
-
-                                                arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_' + arrayValue[indexValue] + '">' + value + "</div>";
-                                            }
-                                            if(key == "habilidadesBlandas"){
-
-                                                arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_' + arrayValue[indexValue] + '">' + arrayValue1[5] + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(' + arrayValue[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(' + arrayValue[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
-                                                //arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + arrayValue1[5] + '</div><div style="width: 10%; min-width:200px;"><button type="submit" data-toggle="modal" data-target="#btnId_' + arrayValue[indexValue] + '" state="HOLA JQUERY!" id="">Editar</button><button style="width: 50%;">Eliminar</button></div>';
-                                               // arrayDeCadenas = arrayDeCadenas + '<div class="modal fade" id="btnId_' + arrayValue[indexValue] + '" tabindex="-1" role="dialog" aria-labelledby="editarLabel_'+ arrayValue[indexValue]  + '" aria-hidden="true"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="editarLabel_'+ arrayValue[indexValue]  + '">Datos de puesto</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">hora</span> </button> </div> <div class="modal-body"> <form class="editPanel" name="form" method="post"> <input type="text" hidden class="id" name="id" value="algo"> <label for="nombre">Nombre</label> <input type="text" class="nombre" name="nombre" value="' + arrayValue1[1] + '"> <br> <label for="empresa">empresa</label> <input type="text" class="empresa" name="empresa" value="' + arrayValue1[2] + '"> <br> <label for="nivel">nivel</label> <input type="text" class="nivel" name="nivel" value="' + arrayValue1[3] + '"> <br> <label for="remuneracion">remuneracion</label> <input type="text" class="remuneracion" name="remuneracion" value="' + arrayValue1[4] + '"> <br> <label for="habilidadesTecnicas">habilidadesTecnicas</label> <input type="text" class="habilidadesTecnicas" name="habilidadesTecnicas" value="' + arrayValue1[5] + '"> <br> <label for="habilidadesBlandas">habilidadesBlandas</label> <input type="text" class="habilidadesBlandas" name="habilidadesBlandas" value="' + arrayValue1[6] + '"> <br> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button> <button type="submit" class="btn btn-primary btnEdit_ID">Save changes</button> </div></form> </div></div> </div> </div>';
-                                                indexValue++;
-
-                                            }
-                                            if(key == "updated_at"){
-
-                                                arrayDeCadenas = arrayDeCadenas + '</div></div>';
-                                                count = 1;  
-                                                arrayData1[arrayValue[countIndex]] = arrayValue1;
-                                                arrayValue1 = [];
-                                                countIndex++;
-
-                                            }
-                                            if(key == "updated_at" && countIndex == countArray){
-                                                div.innerHTML = div.innerHTML + arrayDeCadenas;
-                                            }
-                                        });
-
-                                        }
-                                        else{
-                                            document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
-                                            console.log("error deletePanel: sin valores");
-                                        }
+                                    for(x in stringJSON){
+                                        countArray++;
                                     }
 
-                                });
+                                    var datas = JSON.parse(respuesta, function (key, value) {
 
-                            document.querySelector("#mensajeToast").innerHTML = "Se eliminó correctamente!";
-                            $('#cajita').toast('show');
-                            $('#deleteModal').modal('toggle');
-                        // document.querySelector("#deleteModal").setAttribute("data-show", "false");
-                        // document.querySelector("#deleteModal").setAttribute("data-backdrop", "false");
-                        // document.querySelector("#deleteModal").className = "modal fade";
-                        console.log("Se elimino Puesto" + puesto_id);
+                                        if(count != 1){
+                                            arrayValue.push(value);    
+                                        }
+                                        if(key != "id")
+                                        {
+                                            count = 0;
+                                        }
+                                        else{
+                                            arrayId.push(value);
+                                        }
+                                        if(key == "nombre")
+                                        {
+                                            arrayText = arrayText + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
+                                        }
+                                        if(key == "habilidadesBlandas"){
+                                            arrayText = arrayText + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
+                                            indexValue++;
+                                        }
+                                        if(key == "updated_at"){
+
+                                            arrayText = arrayText + '</div></div>';
+                                            count = 1;  
+                                            arrayValue = [];
+                                            countIndex++;
+
+                                        }
+                                        if(key == "updated_at" && countIndex == countArray){
+                                            div.innerHTML = div.innerHTML + arrayText;
+                                        }
+                                    });
+
+                                }
+                                else{
+                                    document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
+                                    console.log("error deletePanel: sin valores");
+                                }
+
+                            }
+
+                        });
+
+                        document.querySelector("#mensajeToast").innerHTML = "Se eliminó correctamente!";
+                        $('#deleteModal').modal('toggle');
+                        $('#cajita').toast('show');
                     }
                 });
 
             });
 
+                // FUNCIÓN QUE MUESTRA LOS DATOS DEL PUESTO ANTES DE CONFIRMAR SU ELIMINACIÓN
             function preDeletePuesto(idPuesto){
 
                 $.ajax({
@@ -344,15 +287,14 @@
                         tabla: "puestos", id: idPuesto
                     },
                     success: function (respuesta){
-                      //  console.log(respuesta);
 
-                        var arrayValues = [];
+                        var arrayIds = [];
                         var count = 0;
-                        
+
                         var datas = JSON.parse(respuesta, function (key, values) {
 
                             if( count == 0){
-                                arrayValues.push(values);
+                                arrayIds.push(values);
                             }
 
                             if( key == "updated_at")
@@ -361,25 +303,21 @@
                             }
                             if (key == "id"){
                                 count = 0;
-                            }   
-                            });
+                            }
 
-                            document.querySelector("#delete_id").value = arrayValues[0];
-                            // document.querySelector("#delete_nombre").value = arrayValues[1];
-                            // document.querySelector("#delete_habilidadesTecnicas").value = arrayValues[5];
+                        });
 
-                            document.querySelector("#dato_nombre").innerHTML = "Nombre : " + arrayValues[1];
-                            document.querySelector("#dato_habilidad").innerHTML = "Habilidades Técnicas : " + arrayValues[5];
+                        document.querySelector("#delete_id").value = arrayIds[0];
+                        document.querySelector("#dato_nombre").innerHTML = "Nombre : " + arrayIds[1];
+                        document.querySelector("#dato_habilidad").innerHTML = "Habilidades Técnicas : " + arrayIds[5];
 
-                            console.log(arrayValues);
                     }
                 });
 
             }
 
+            // FUNCIÓN QUE MUESTRA LOS DATOS DEL PUESTO QUE SERÁ MODIFICADO
             function modificarPanel(idPuesto){
-
-                console.log("Se presiono el boton de editar!, tiene id = " + idPuesto);
 
                 $.ajax({
                     type: "POST",
@@ -388,15 +326,14 @@
                         tabla: "puestos", id: idPuesto
                     },
                     success: function (respuesta){
-                      //  console.log(respuesta);
 
-                        var arrayValues = [];
+                        var arrayIds = [];
                         var count = 0;
-                        
+
                         var datas = JSON.parse(respuesta, function (key, values) {
 
                             if( count == 0){
-                                arrayValues.push(values);
+                                arrayIds.push(values);
                             }
 
                             if( key == "updated_at")
@@ -405,71 +342,74 @@
                             }
                             if (key == "id"){
                                 count = 0;
-                            }   
-                            });
+                            }
 
-                            document.querySelector("#edit_id").value = arrayValues[0];
-                            document.querySelector("#edit_nombre").value = arrayValues[1];
-                            document.querySelector("#edit_empresa").value = arrayValues[2];
-                            document.querySelector("#edit_nivel").value = arrayValues[3];
-                            document.querySelector("#edit_remuneracion").value = arrayValues[4];
-                            document.querySelector("#edit_habilidadesTecnicas").value = arrayValues[5];
-                            document.querySelector("#edit_habilidadesBlandas").value = arrayValues[6];
+                        });
 
-                            // console.log(arrayValues);
+                        document.querySelector("#edit_id").value = arrayIds[0];
+                        document.querySelector("#edit_nombre").value = arrayIds[1];
+                        document.querySelector("#edit_empresa").value = arrayIds[2];
+                        document.querySelector("#edit_nivel").value = arrayIds[3];
+                        document.querySelector("#edit_remuneracion").value = arrayIds[4];
+                        document.querySelector("#edit_habilidadesTecnicas").value = arrayIds[5];
+                        document.querySelector("#edit_habilidadesBlandas").value = arrayIds[6];
+
                     }
                 });
             }
 
+
             $(document).ready(function (){
 
+                // FUNCIÓN QUE MODIFICA LOS DATOS DEL PUESTO SELECCIONADO
                 $('#editPanel').submit( function (a){
 
-                    console.log("Se hizo submit con el boton del form y estamos en editPanel para actualizar el puesto");
-                    console.log(this.id.value);
-                    // var nombre = "#nombre_";
                     var puesto_id = this.id.value;
                     var puesto_nombre = this.nombre.value;
                     var puesto_habilidadesTecnicas = this.habilidadesTecnicas.value;
+
                     a.preventDefault();
+
                     $.ajax({
                         type: "POST",
                         url: 'editarPuesto.php',
                         data: $(this).serialize(),
                         success: function (response){
+
                             if(response){
-                              //  console.log(objeto);
+
                                 document.querySelector("#mensajeToast").innerHTML = "Se modificó correctamente!";
                                 document.querySelector("#nombre_" + puesto_id).innerHTML = puesto_nombre;
                                 document.querySelector("#habilidadesTecnicas_" + puesto_id).innerHTML = puesto_habilidadesTecnicas;
-                                console.log("ACTUALIZADO!");
-                                $('#cajita').toast('show');
+
                                 $('#editModal').modal('toggle');
-                                
+                                $('#cajita').toast('show');
+
                             }
                             else{
-                                console.log("ERROR");
+
+                                document.querySelector("#mensajeToast").innerHTML = "Hubo un error intente nuevamente";
+                                $('#cajita').toast('show');
+
                             }
                         }
                     });
                 });
 
-                
 
+                // FUNCIÓN QUE AGREGA PUESTOS NUEVOS, LUEGO ACTUALIZA LA VISTA DE PUESTOS
                 $('#addPanel').submit(function (e){
 
-                    console.log("Se hizo submit con el boton y estamos en addtPanel");
-
                     e.preventDefault();
-                    $.ajax({
 
+                    $.ajax({
                         type: "POST",
                         url: 'agregarPuesto.php',
                         data: $(this).serialize(),
-
                         success: function (response){
 
                             var jsonData = JSON.parse(response);
+
                             if (jsonData.success == "1"){
 
                                 document.querySelector("#nombre").value = "";
@@ -480,88 +420,69 @@
                                 document.querySelector("#habilidadesBlandas").value = "";
 
                                 $.ajax({
-
                                     type: "POST",
                                     url: 'actualizarLista.php',
                                     data: {
                                         tabla: "puestos"
                                     },
-
                                     success: function (respuesta){
 
                                         if(respuesta){
+
+                                            var arrayText = []; arrayId = []; arrayValue = []; countArray = 0; indexValue = 0; countIndex = 0; count = 0;
+
+                                            var div = document.querySelector('#Refresh');
+                                            var stringJSON = JSON.parse(respuesta);
+
+                                            div.innerHTML = "";
+
+                                            for(x in stringJSON){
+                                                countArray++;
+                                            }
+
+                                            var datas = JSON.parse(respuesta, function (key, value) {
+
+                                                if(count != 1){
+                                                    arrayValue.push(value);    
+                                                }
+                                                if(key != "id")
+                                                {
+                                                    count = 0;
+                                                }
+                                                else{
+                                                    arrayId.push(value);
+                                                }
+                                                if(key == "nombre")
+                                                {
+                                                    arrayText = arrayText + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
+                                                }
+                                                if(key == "habilidadesBlandas"){
+                                                    arrayText = arrayText + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
+                                                    indexValue++;
+                                                }
+                                                if(key == "updated_at"){
+
+                                                    arrayText = arrayText + '</div></div>';
+                                                    count = 1;  
+                                                    arrayValue = [];
+                                                    countIndex++;
+
+                                                }
+                                                if(key == "updated_at" && countIndex == countArray){
+                                                    div.innerHTML = div.innerHTML + arrayText;
+                                                }
+
+                                            });
                                             document.querySelector("#mensajeToast").innerHTML = "Se agregó correctamente!";
-                                            console.log("exito addPanel: ingresamos a la funcion de refrescar datos");
-
-                                        var div = document.querySelector('#Refresh');
-                                        var countArray = 0;
-                                        var arrayDeCadenas = [];
-                                        var stringJSON = JSON.parse(respuesta);
-                                        div.innerHTML = "";
-
-                                        for(x in stringJSON){
-                                            countArray++;
-                                        }
-
-                                        var arrayValue = [];
-                                        var indexValue = 0;
-                                        var arrayValue1 = [];
-                                        var indexKey = 0;
-                                        var arrayKey1 = [];
-                                        var countIndex = 0;
-                                        var count = 0;
-                                        var arrayData1 = [];
-                                        var datas = JSON.parse(respuesta, function (key, value) {
-
-                                            if(count != 1){
-                                                arrayValue1.push(value);    
-                                            }
-                                            if(key != "id")
-                                            {
-                                                count = 0;
-                                            }
-                                            else{
-                                                arrayValue.push(value);
-                                            }
-                                            if(key == "nombre")
-                                            {
-
-
-                                                arrayDeCadenas = arrayDeCadenas + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_' + arrayValue[indexValue] + '">' + value + "</div>";
-                                            }
-                                            if(key == "habilidadesBlandas"){
-
-                                                arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_' + arrayValue[indexValue] + '">' + arrayValue1[5] + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(' + arrayValue[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(' + arrayValue[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
-                                                //arrayDeCadenas = arrayDeCadenas + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;">' + arrayValue1[5] + '</div><div style="width: 10%; min-width:200px;"><button type="submit" data-toggle="modal" data-target="#btnId_' + arrayValue[indexValue] + '" state="HOLA JQUERY!" id="">Editar</button><button style="width: 50%;">Eliminar</button></div>';
-                                               // arrayDeCadenas = arrayDeCadenas + '<div class="modal fade" id="btnId_' + arrayValue[indexValue] + '" tabindex="-1" role="dialog" aria-labelledby="editarLabel_'+ arrayValue[indexValue]  + '" aria-hidden="true"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="editarLabel_'+ arrayValue[indexValue]  + '">Datos de puesto</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">hora</span> </button> </div> <div class="modal-body"> <form class="editPanel" name="form" method="post"> <input type="text" hidden class="id" name="id" value="algo"> <label for="nombre">Nombre</label> <input type="text" class="nombre" name="nombre" value="' + arrayValue1[1] + '"> <br> <label for="empresa">empresa</label> <input type="text" class="empresa" name="empresa" value="' + arrayValue1[2] + '"> <br> <label for="nivel">nivel</label> <input type="text" class="nivel" name="nivel" value="' + arrayValue1[3] + '"> <br> <label for="remuneracion">remuneracion</label> <input type="text" class="remuneracion" name="remuneracion" value="' + arrayValue1[4] + '"> <br> <label for="habilidadesTecnicas">habilidadesTecnicas</label> <input type="text" class="habilidadesTecnicas" name="habilidadesTecnicas" value="' + arrayValue1[5] + '"> <br> <label for="habilidadesBlandas">habilidadesBlandas</label> <input type="text" class="habilidadesBlandas" name="habilidadesBlandas" value="' + arrayValue1[6] + '"> <br> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button> <button type="submit" class="btn btn-primary btnEdit_ID">Save changes</button> </div></form> </div></div> </div> </div>';
-                                                indexValue++;
-
-                                            }
-                                            if(key == "updated_at"){
-
-                                                arrayDeCadenas = arrayDeCadenas + '</div></div>';
-                                                count = 1;  
-                                                arrayData1[arrayValue[countIndex]] = arrayValue1;
-                                                arrayValue1 = [];
-                                                countIndex++;
-
-                                            }
-                                            if(key == "updated_at" && countIndex == countArray){
-                                                div.innerHTML = div.innerHTML + arrayDeCadenas;
-                                            }
-                                        });
-
-                                        }
-                                        else{
-                                            document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
-                                            console.log("error addPanel: sin valores");
+                                            $('#cajita').toast('show');
                                         }
                                     }
 
                                 });
-
+                            }
+                            else {
+                                document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
                                 $('#cajita').toast('show');
-
                             }
                         }
                     });
