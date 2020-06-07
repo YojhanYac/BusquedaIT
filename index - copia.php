@@ -37,39 +37,55 @@
                 $nameValue = "habilidadesTecnicas";
                 // var_dump($arrayData);
                 $contador = 0;
-                $validador = 0;
-
-                $cantArray = [];
                 for( $i = 0; $i < count($valor); $i++){ //recorre todas las posiciones de la tabla puestos
-
+                   // var_dump($valor[$i]['nombre']);
+                    // $value[] = $valor[$i]['habilidadesTecnicas']; 
                     $valueArray = $valueArray . ", " . $valor[$i][$nameValue]; //filtro para guardar solo los datos en un string
-                    $buffArray = explode(", ", $valueArray); //separamos los datos que están dentro de las ',' y se guardan en el array
-
-                    for($v = 1; $v < count($buffArray); $v++){ //recorre el array con los datos guardados
-                        
-                       //echo "<br>" . $buffArray[$v] . "<br>"; //
-                        // PHP
-                        // Java
-                        // SQL
-                        // Git
-
-                        if(empty($arrayData)){
-                            $arrayData[] = $buffArray[$v];
-                            $cantArray[] = 1;
-                        }
-                        else{
-                            for($x = 0; $x < count($arrayData); $x++){
-                                if($arrayData[$x] == $buffArray[$v]){
-                                    $cantArray[$x]++;
-                                    echo "Se encontró un identico!";
-                                }
+                    $buffArray = explode(", ", $valueArray); //separamos los datos
+                    // var_dump($valueArray);
+                    // $buffArray = array_merge ($buffArray, explode(", ", $valor[$i]['habilidadesTecnicas']));
+                    // $buffArray = $buffArray + $valor[$i]['habilidadesTecnicas'];
+                    // echo ($buffArray[1]);
+                    for($v = 1; $v < count($buffArray); $v++) //recorre el array con los nombres guardados
+                    {
+                        // echo "<br>" . $buffArray[1] . "<br>";
+                        for($w = 0; $w < count($arrayData); $w++){
+                             echo "<br>" . $arrayData[$w] . "<br>";
+                            if($buffArray[$v] == $arrayData[$w]){
+                                if(empty($arrayData[$contador])){ //si lo encuentra y la posición está vacia, la inicializa, sino le suma 1
+                                            $countValue[$v] = 1;
+                                            echo("es el primero!"); 
+                                            $arrayData[$contador] = $buffArray[$v];
+                                        }
+                                        else{
+                                            $countValue[$v]++;
+                                            echo("encontró coincidencia!");
+                                        }
                             }
+                            else{
+                                $contador++;
+                            }
+
                         }
+                        // $arrayData[] = $buffArray[$v];
+                        // if($buffArray[$v] == $valor[$i]['habilidadesTecnicas']) //al recorrer comprueba si existe una coincidencia con alguno guardado anteriormente
+                        // {
+                        //     if(empty($countValue[$v])){ //si lo encuentra y la posición está vacia, la inicializa, sino le suma 1
+                        //         $countValue[$v] = 1;
+                        //         echo("es el primero!");
+                        //     }
+                        //     else{
+                        //         $countValue[$v]++;
+                        //         echo("encontró coincidencia!");
+                        //     }
+                        // }
                     }
                     $valueArray = "";
+                    // var_dump($arrayData);
+                // break;
                 }
-                var_dump($cantArray);
-                // var_dump($arrayData);
+                // var_dump($buffArray);
+                // var_dump($valueArray);
 ?>
         </div>
 

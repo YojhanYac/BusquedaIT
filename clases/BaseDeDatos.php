@@ -55,7 +55,9 @@ class BaseDeDatos {
         return false;
     }
 
-
+    public function graficos($tabla){
+        return $resultado = $this->mostrar($tabla);
+    }
 
 }
 
