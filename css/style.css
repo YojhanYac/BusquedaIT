@@ -1,12 +1,98 @@
-input {
+/* General */
+body {
+    background: gray; width: 100%;
+}
+.title-page{
+    margin: 1% 0.4% 0.25% 0.4%; border-radius: 0.25rem;
+}
+h1{
+    width: 100%;
+}
+input{
     width: 90%!important;
     margin: 1% 5%;
 }
-
 .modal-body{
     padding-bottom: 0px;
 }
-
 form{
     margin: 0px 0px;
+}
+
+
+/* Toast */
+.toast-container{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100px;
+    z-index: 1060;
+    position: fixed;
+}
+.toast-position{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+}
+.toast-header{
+    width: 1000px!important;
+}
+.toast-body{
+    width: 100%;
+}
+
+
+/* Botón agregar y gráficos */
+.main-container{
+    display:flex;
+    justify-content: space-between;
+    margin: 0.25% 0.4% 1% 0.4%;
+    border-radius: 0.25rem;
+}
+
+
+/* Cartas de items */
+.card-item-container{
+    width: auto;
+    margin: 0.25% 0.4%;
+
+}
+.card-item{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.card-description{
+    margin: 0px 0px;
+    display:inline-block;
+    width: auto;
+    margin-right: 4%;
+
+}
+.card-name{
+    margin: 0px 0px;
+    width: auto;
+    min-width: 150px;
+    display:inline-block;
+    margin-right: 4%;
+}
+
+
+/* Botones de los items, editar y eliminar */
+.card-button-container{
+    width: 10%;
+    min-width:200px;
+}
+.card-button{
+    width: 50%;
+}
+.green-button:hover{
+    background: #26ac24;
+}
+.red-button:hover{
+    background: #c23737;
 }

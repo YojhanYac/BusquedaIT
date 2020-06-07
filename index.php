@@ -15,28 +15,28 @@
         <link rel="icon" type="image/png" href="icon/icon.svg">
         <title>BusquedaIT</title>
     </head>
-    <body style="background: gray; width: 100%;">
+    <body>
 
         <!-- TITULO -->
-        <div class="navbar bg-light" style="margin: 1% 0.4% 0.25% 0.4%; border-radius: 0.25rem;">
-            <h1 style="width: 100%;">Bienvenido a BusquedaIT!</h1>
+        <div class="navbar bg-light title-page">
+            <h1>Bienvenido a BusquedaIT!</h1>
         </div>
 
         <!-- NOTIFICACIÓN TOAST -->
-        <div class="" style="position: absolute; bottom: 0; right: 0; height: 100px; z-index: 1060; position: fixed;">
-            <div class="toast" id="cajita" data-delay="7000" style="position: relative; bottom: 0; right: 0; height: 100%;">
-                <div class="toast-header" style="width: 1000px!important;">
+        <div class="toast-container">
+            <div class="toast toast-position" id="toast" data-delay="1300">
+                <div class="toast-header">
                     <strong class="mr-auto">BusquedaIT</strong>
                     <small class="text-muted">2 segundos atrás</small>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <div class="toast-body" style="width: 100%;" id="mensajeToast">Se agregó correctamente!</div>
+                <div class="toast-body" id="textToast">Se agregó correctamente!</div>
             </div>
         </div>
 
 
         <!-- AGREGAR PUESTO PRESIONANDO EN EL BOTON "AGREGAR PUESTO" LLAMANDO A MODAL "exampleModal" PARA CARGAR DATOS-->
-        <div class="navbar navbar-expand-lg navbar-light bg-light" style="display:flex; justify-content: space-between; margin: 0.25% 0.4% 1% 0.4%; border-radius: 0.25rem;">
+        <div class="navbar navbar-expand-lg navbar-light bg-light main-container">
             <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" onclick="" data-target="#exampleModal">Agregar puesto</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficosModal">Gráficos</button>
@@ -158,8 +158,8 @@
 
             foreach($arrayBuff as $buff){?>
 
-                <div class="card" style="width: auto; margin: 0.25% 0.4%;">
-                    <div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><?php
+                <div class="card card-item-container">
+                    <div class="card-body card-item"><?php
 
                     foreach($buff as $name => $value){
 
@@ -169,13 +169,13 @@
                         if($name == "nombre" || $name == "habilidadesTecnicas"){
                             if($count == 1 ){?>
 
-                                <div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_<?php echo $arrayID; ?>"><?php echo $value; ?></div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(<?php echo $arrayID;?>)"data-target="#editModal">Editar</button><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(<?php echo $arrayID;?>)" data-target="#deleteModal">Eliminar</button></div><?php
+                                <div class="card-description" id="habilidadesTecnicas_<?php echo $arrayID; ?>"><?php echo $value; ?></div><div class="card-button-container"><button type="buttom" class="green card-button" data-toggle="modal" onclick="modificarPanel(<?php echo $arrayID;?>)"data-target="#editModal">Editar</button><button type="buttom" class="red card-button" data-toggle="modal" onclick="preDeletePuesto(<?php echo $arrayID;?>)" data-target="#deleteModal">Eliminar</button></div><?php
                     
                                 $count = 0; $arrayID = 0;
                             } 
                             else{ ?>
 
-                                <div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_<?php echo $arrayID; ?>"><?php
+                                <div class="card-name" id="nombre_<?php echo $arrayID; ?>"><?php
                                     echo $value;?>
                                 </div><?php
                             
@@ -190,7 +190,7 @@
 
 
         <script type="text/javascript">
-                
+
             // FUNCIÓN QUE ELIMINA EL PUESTO SELECIONADO, Y LUEGO ACTUALIZA LA VISTA DE PUESTOS
             $('#deletePanel').submit( function (a){
 
@@ -244,10 +244,10 @@
                                             }
                                             if(key == "nombre")
                                             {
-                                                arrayText = arrayText + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
+                                                arrayText = arrayText + '<div class="card card-item-container"><div class="card-body card-item"><div class="card-name" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
                                             }
                                             if(key == "habilidadesBlandas"){
-                                                arrayText = arrayText + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
+                                                arrayText = arrayText + '<div class="card-description" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div class="card-button-container"><button type="buttom" class="card-button green-button" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" class="card-button red-button" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
                                                 indexValue++;
                                             }
                                             if(key == "updated_at"){
@@ -264,20 +264,20 @@
                                         });
                                     }
                                     else{
-                                        document.querySelector("#mensajeToast").innerHTML = "Error al actualizar la lista";
-                                        $('#cajita').toast('show');
+                                        document.querySelector("#textToast").innerHTML = "Error al actualizar la lista";
+                                        $('#toast').toast('show');
                                     }
 
                                 }
 
                             });
-                            document.querySelector("#mensajeToast").innerHTML = "Se eliminó correctamente!";
+                            document.querySelector("#textToast").innerHTML = "Se eliminó correctamente!";
                             $('#deleteModal').modal('toggle');
-                            $('#cajita').toast('show');
+                            $('#toast').toast('show');
                         }
                         else{
-                            document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
-                            $('#cajita').toast('show');
+                            document.querySelector("#textToast").innerHTML = "Hubo un error, intente nuevamente";
+                            $('#toast').toast('show');
                         }
                     }
                 });
@@ -321,9 +321,9 @@
                             document.querySelector("#dato_habilidad").innerHTML = "Habilidades Técnicas : " + arrayIds[5];
                         }
                         else{
-                            document.querySelector("#mensajeToast").innerHTML = "Hubo un error intente nuevamente";
+                            document.querySelector("#textToast").innerHTML = "Hubo un error intente nuevamente";
                             $('#editModal').modal('toggle');
-                            $('#cajita').toast('show');
+                            $('#toast').toast('show');
                         }
                     }
                 });
@@ -371,9 +371,9 @@
                             document.querySelector("#edit_habilidadesBlandas").value = arrayIds[6];
                         }
                         else{
-                            document.querySelector("#mensajeToast").innerHTML = "Hubo un error intente nuevamente";
+                            document.querySelector("#textToast").innerHTML = "Hubo un error intente nuevamente";
                             $('#editModal').modal('toggle');
-                            $('#cajita').toast('show');
+                            $('#toast').toast('show');
                         }
                     }
                 });
@@ -401,18 +401,18 @@
 
                             if (jsonData.success == "1"){
 
-                                document.querySelector("#mensajeToast").innerHTML = "Se modificó correctamente!";
+                                document.querySelector("#textToast").innerHTML = "Se modificó correctamente!";
                                 document.querySelector("#nombre_" + puesto_id).innerHTML = puesto_nombre;
                                 document.querySelector("#habilidadesTecnicas_" + puesto_id).innerHTML = puesto_habilidadesTecnicas;
 
                                 $('#editModal').modal('toggle');
-                                $('#cajita').toast('show');
+                                $('#toast').toast('show');
 
                             }
                             else{
 
-                                document.querySelector("#mensajeToast").innerHTML = "Hubo un error intente nuevamente";
-                                $('#cajita').toast('show');
+                                document.querySelector("#textToast").innerHTML = "Hubo un error intente nuevamente";
+                                $('#toast').toast('show');
 
                             }
                         }
@@ -477,10 +477,10 @@
                                                 }
                                                 if(key == "nombre")
                                                 {
-                                                    arrayText = arrayText + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
+                                                    arrayText = arrayText + '<div class="card card-item-container"><div class="card-body card-item"><div class="card-name" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
                                                 }
                                                 if(key == "habilidadesBlandas"){
-                                                    arrayText = arrayText + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
+                                                    arrayText = arrayText + '<div class="card-description" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div class="card-button-container"><button type="buttom" class="card-button green-button" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" class="card-button red-button" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
                                                     indexValue++;
                                                 }
                                                 if(key == "updated_at"){
@@ -498,18 +498,18 @@
                                             });
                                         }
                                         else{
-                                            document.querySelector("#mensajeToast").innerHTML = "Error al actualizar lista";
-                                            $('#cajita').toast('show');
+                                            document.querySelector("#textToast").innerHTML = "Error al actualizar lista";
+                                            $('#toast').toast('show');
                                         }
                                     }
 
                                 });
-                                document.querySelector("#mensajeToast").innerHTML = "Se agregó correctamente!";
-                                $('#cajita').toast('show');
+                                document.querySelector("#textToast").innerHTML = "Se agregó correctamente!";
+                                $('#toast').toast('show');
                             }
                             else {
-                                document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
-                                $('#cajita').toast('show');
+                                document.querySelector("#textToast").innerHTML = "Hubo un error, intente nuevamente";
+                                $('#toast').toast('show');
                             }
                         }
                     });
