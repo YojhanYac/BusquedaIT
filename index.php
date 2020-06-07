@@ -58,7 +58,7 @@
                     <div class="modal-body">
                         <form id="addPanel" name="form" method="post">
                             <input type="text" hidden id="id" name="nombre" value="">
-                            <input type="text" id="nombre" name="nombre" value="" placeholder="Puesto"><br>
+                            <input type="text" id="nombre" name="nombre" value="" placeholder="Puesto" required><br>
                             <input type="text" id="empresa" name="empresa" value="" placeholder="Empresa"><br>
                             <input type="text" id="nivel" name="nivel" value="" placeholder="Nivel"><br>
                             <input type="text" id="remuneracion" name="remuneracion" value="" placeholder="Remuneración"><br>
@@ -104,7 +104,7 @@
                     <div class="modal-body">
                         <form id="editPanel" name="form" method="post">
                             <input type="text" hidden id="edit_id" name="id" value="">
-                            <input type="text" id="edit_nombre" name="nombre" value="" placeholder="Nombre"><br>
+                            <input type="text" id="edit_nombre" name="nombre" value="" placeholder="Nombre" required><br>
                             <input type="text" id="edit_empresa" name="empresa" value="" placeholder="Empresa"><br>
                             <input type="text" id="edit_nivel" name="nivel" value="" placeholder="Nivel"><br>
                             <input type="text" id="edit_remuneracion" name="remuneracion" value="" placeholder="Remuneración"><br>
@@ -205,73 +205,80 @@
                     },
                     success: function (respuesta){
 
-                        $.ajax({
-                            type: "POST",
-                            url: 'actualizarLista.php',
-                            data: {
-                                tabla: "puestos"
-                            },
-                            success: function (respuesta){
+                        var jsonData = JSON.parse(respuesta);
 
-                                if(respuesta){
+                        if (jsonData.success == "1"){
 
-                                    var arrayText = []; arrayId = []; arrayValue = []; countArray = 0; indexValue = 0; countIndex = 0; count = 0;
+                            $.ajax({
+                                type: "POST",
+                                url: 'actualizarLista.php',
+                                data: {
+                                    tabla: "puestos"
+                                },
+                                success: function (respuesta){
 
-                                    var stringJSON = JSON.parse(respuesta);
-                                    var div = document.querySelector('#Refresh');
+                                    if(respuesta != false){
 
-                                    div.innerHTML = "";
+                                        var arrayText = []; arrayId = []; arrayValue = []; countArray = 0; indexValue = 0; countIndex = 0; count = 0;
 
-                                    for(x in stringJSON){
-                                        countArray++;
+                                        var stringJSON = JSON.parse(respuesta);
+                                        var div = document.querySelector('#Refresh');
+
+                                        div.innerHTML = "";
+
+                                        for(x in stringJSON){
+                                            countArray++;
+                                        }
+
+                                        var datas = JSON.parse(respuesta, function (key, value) {
+
+                                            if(count != 1){
+                                                arrayValue.push(value);    
+                                            }
+                                            if(key != "id")
+                                            {
+                                                count = 0;
+                                            }
+                                            else{
+                                                arrayId.push(value);
+                                            }
+                                            if(key == "nombre")
+                                            {
+                                                arrayText = arrayText + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
+                                            }
+                                            if(key == "habilidadesBlandas"){
+                                                arrayText = arrayText + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
+                                                indexValue++;
+                                            }
+                                            if(key == "updated_at"){
+
+                                                arrayText = arrayText + '</div></div>';
+                                                count = 1;  
+                                                arrayValue = [];
+                                                countIndex++;
+
+                                            }
+                                            if(key == "updated_at" && countIndex == countArray){
+                                                div.innerHTML = div.innerHTML + arrayText;
+                                            }
+                                        });
+                                    }
+                                    else{
+                                        document.querySelector("#mensajeToast").innerHTML = "Error al actualizar la lista";
+                                        $('#cajita').toast('show');
                                     }
 
-                                    var datas = JSON.parse(respuesta, function (key, value) {
-
-                                        if(count != 1){
-                                            arrayValue.push(value);    
-                                        }
-                                        if(key != "id")
-                                        {
-                                            count = 0;
-                                        }
-                                        else{
-                                            arrayId.push(value);
-                                        }
-                                        if(key == "nombre")
-                                        {
-                                            arrayText = arrayText + '<div class="card" style="width: auto; margin: 0.25% 0.4%;"><div class="card-body" style="display: flex; flex-direction: row; align-items: baseline; flex-wrap: wrap; justify-content: space-between; flex-grow: 1;"><div style="margin: 0px 0px; width: auto; min-width: 150px;display:inline-block; margin-right: 4%;" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
-                                        }
-                                        if(key == "habilidadesBlandas"){
-                                            arrayText = arrayText + '<div style="margin: 0px 0px; display:inline-block;width: auto; margin-right: 4%;" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div style="width: 10%; min-width:200px;"><button type="buttom" style="width: 50%;" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" style="width: 50%;" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
-                                            indexValue++;
-                                        }
-                                        if(key == "updated_at"){
-
-                                            arrayText = arrayText + '</div></div>';
-                                            count = 1;  
-                                            arrayValue = [];
-                                            countIndex++;
-
-                                        }
-                                        if(key == "updated_at" && countIndex == countArray){
-                                            div.innerHTML = div.innerHTML + arrayText;
-                                        }
-                                    });
-
-                                }
-                                else{
-                                    document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
-                                    console.log("error deletePanel: sin valores");
                                 }
 
-                            }
-
-                        });
-
-                        document.querySelector("#mensajeToast").innerHTML = "Se eliminó correctamente!";
-                        $('#deleteModal').modal('toggle');
-                        $('#cajita').toast('show');
+                            });
+                            document.querySelector("#mensajeToast").innerHTML = "Se eliminó correctamente!";
+                            $('#deleteModal').modal('toggle');
+                            $('#cajita').toast('show');
+                        }
+                        else{
+                            document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
+                            $('#cajita').toast('show');
+                        }
                     }
                 });
 
@@ -288,29 +295,36 @@
                     },
                     success: function (respuesta){
 
-                        var arrayIds = [];
-                        var count = 0;
+                        if(respuesta != false){
 
-                        var datas = JSON.parse(respuesta, function (key, values) {
+                            var arrayIds = [];
+                            var count = 0;
 
-                            if( count == 0){
-                                arrayIds.push(values);
-                            }
+                            var datas = JSON.parse(respuesta, function (key, values) {
 
-                            if( key == "updated_at")
-                            {
-                                count++;
-                            }
-                            if (key == "id"){
-                                count = 0;
-                            }
+                                if( count == 0){
+                                    arrayIds.push(values);
+                                }
 
-                        });
+                                if( key == "updated_at")
+                                {
+                                    count++;
+                                }
+                                if (key == "id"){
+                                    count = 0;
+                                }
 
-                        document.querySelector("#delete_id").value = arrayIds[0];
-                        document.querySelector("#dato_nombre").innerHTML = "Nombre : " + arrayIds[1];
-                        document.querySelector("#dato_habilidad").innerHTML = "Habilidades Técnicas : " + arrayIds[5];
+                            });
 
+                            document.querySelector("#delete_id").value = arrayIds[0];
+                            document.querySelector("#dato_nombre").innerHTML = "Nombre : " + arrayIds[1];
+                            document.querySelector("#dato_habilidad").innerHTML = "Habilidades Técnicas : " + arrayIds[5];
+                        }
+                        else{
+                            document.querySelector("#mensajeToast").innerHTML = "Hubo un error intente nuevamente";
+                            $('#editModal').modal('toggle');
+                            $('#cajita').toast('show');
+                        }
                     }
                 });
 
@@ -327,33 +341,40 @@
                     },
                     success: function (respuesta){
 
-                        var arrayIds = [];
-                        var count = 0;
+                        if(respuesta != false){
 
-                        var datas = JSON.parse(respuesta, function (key, values) {
+                            var arrayIds = [];
+                            var count = 0;
 
-                            if( count == 0){
-                                arrayIds.push(values);
-                            }
+                            var datas = JSON.parse(respuesta, function (key, values) {
 
-                            if( key == "updated_at")
-                            {
-                                count++;
-                            }
-                            if (key == "id"){
-                                count = 0;
-                            }
+                                if( count == 0){
+                                    arrayIds.push(values);
+                                }
 
-                        });
+                                if( key == "updated_at")
+                                {
+                                    count++;
+                                }
+                                if (key == "id"){
+                                    count = 0;
+                                }
 
-                        document.querySelector("#edit_id").value = arrayIds[0];
-                        document.querySelector("#edit_nombre").value = arrayIds[1];
-                        document.querySelector("#edit_empresa").value = arrayIds[2];
-                        document.querySelector("#edit_nivel").value = arrayIds[3];
-                        document.querySelector("#edit_remuneracion").value = arrayIds[4];
-                        document.querySelector("#edit_habilidadesTecnicas").value = arrayIds[5];
-                        document.querySelector("#edit_habilidadesBlandas").value = arrayIds[6];
+                            });
 
+                            document.querySelector("#edit_id").value = arrayIds[0];
+                            document.querySelector("#edit_nombre").value = arrayIds[1];
+                            document.querySelector("#edit_empresa").value = arrayIds[2];
+                            document.querySelector("#edit_nivel").value = arrayIds[3];
+                            document.querySelector("#edit_remuneracion").value = arrayIds[4];
+                            document.querySelector("#edit_habilidadesTecnicas").value = arrayIds[5];
+                            document.querySelector("#edit_habilidadesBlandas").value = arrayIds[6];
+                        }
+                        else{
+                            document.querySelector("#mensajeToast").innerHTML = "Hubo un error intente nuevamente";
+                            $('#editModal').modal('toggle');
+                            $('#cajita').toast('show');
+                        }
                     }
                 });
             }
@@ -376,7 +397,9 @@
                         data: $(this).serialize(),
                         success: function (response){
 
-                            if(response){
+                            var jsonData = JSON.parse(response);
+
+                            if (jsonData.success == "1"){
 
                                 document.querySelector("#mensajeToast").innerHTML = "Se modificó correctamente!";
                                 document.querySelector("#nombre_" + puesto_id).innerHTML = puesto_nombre;
@@ -427,7 +450,7 @@
                                     },
                                     success: function (respuesta){
 
-                                        if(respuesta){
+                                        if(respuesta != false){
 
                                             var arrayText = []; arrayId = []; arrayValue = []; countArray = 0; indexValue = 0; countIndex = 0; count = 0;
 
@@ -473,12 +496,16 @@
                                                 }
 
                                             });
-                                            document.querySelector("#mensajeToast").innerHTML = "Se agregó correctamente!";
+                                        }
+                                        else{
+                                            document.querySelector("#mensajeToast").innerHTML = "Error al actualizar lista";
                                             $('#cajita').toast('show');
                                         }
                                     }
 
                                 });
+                                document.querySelector("#mensajeToast").innerHTML = "Se agregó correctamente!";
+                                $('#cajita').toast('show');
                             }
                             else {
                                 document.querySelector("#mensajeToast").innerHTML = "Hubo un error, intente nuevamente";
