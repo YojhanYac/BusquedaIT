@@ -218,50 +218,7 @@
                                 success: function (respuesta){
 
                                     if(respuesta != false){
-
-                                        var arrayText = []; arrayId = []; arrayValue = []; countArray = 0; indexValue = 0; countIndex = 0; count = 0;
-
-                                        var stringJSON = JSON.parse(respuesta);
-                                        var div = document.querySelector('#Refresh');
-
-                                        div.innerHTML = "";
-
-                                        for(x in stringJSON){
-                                            countArray++;
-                                        }
-
-                                        var datas = JSON.parse(respuesta, function (key, value) {
-
-                                            if(count != 1){
-                                                arrayValue.push(value);    
-                                            }
-                                            if(key != "id")
-                                            {
-                                                count = 0;
-                                            }
-                                            else{
-                                                arrayId.push(value);
-                                            }
-                                            if(key == "nombre")
-                                            {
-                                                arrayText = arrayText + '<div class="card card-item-container"><div class="card-body card-item"><div class="card-name" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
-                                            }
-                                            if(key == "habilidadesBlandas"){
-                                                arrayText = arrayText + '<div class="card-description" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div class="card-button-container"><button type="buttom" class="card-button green-button" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" class="card-button red-button" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
-                                                indexValue++;
-                                            }
-                                            if(key == "updated_at"){
-
-                                                arrayText = arrayText + '</div></div>';
-                                                count = 1;  
-                                                arrayValue = [];
-                                                countIndex++;
-
-                                            }
-                                            if(key == "updated_at" && countIndex == countArray){
-                                                div.innerHTML = div.innerHTML + arrayText;
-                                            }
-                                        });
+                                        actualizarPuestos(respuesta);
                                     }
                                     else{
                                         document.querySelector("#textToast").innerHTML = "Error al actualizar la lista";
@@ -379,6 +336,54 @@
                 });
             }
 
+            function actualizarPuestos(respuesta){
+                var arrayText = []; arrayId = []; arrayValue = []; countArray = 0; indexValue = 0; countIndex = 0; count = 0;
+
+                var div = document.querySelector('#Refresh');
+                var stringJSON = JSON.parse(respuesta);
+
+                div.innerHTML = "";
+
+                for(x in stringJSON){
+                    countArray++;
+                }
+
+                var datas = JSON.parse(respuesta, function (key, value) {
+                
+                    if(count != 1){
+                        arrayValue.push(value);    
+                    }
+                    if(key != "id")
+                    {
+                        count = 0;
+                    }
+                    else{
+                        arrayId.push(value);
+                    }
+                    if(key == "nombre")
+                    {
+                        arrayText = arrayText + '<div class="card card-item-container"><div class="card-body card-item"><div class="card-name" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
+                    }
+                    if(key == "habilidadesBlandas"){
+                        arrayText = arrayText + '<div class="card-description" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div class="card-button-container"><button type="buttom" class="card-button green-button" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" class="card-button red-button" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
+                        indexValue++;
+                    }
+                    if(key == "updated_at"){
+                    
+                        arrayText = arrayText + '</div></div>';
+                        count = 1;  
+                        arrayValue = [];
+                        countIndex++;
+                    
+                    }
+                    if(key == "updated_at" && countIndex == countArray){
+                        div.innerHTML = div.innerHTML + arrayText;
+                    }
+                
+                });
+
+            }
+
 
             $(document).ready(function (){
 
@@ -451,51 +456,7 @@
                                     success: function (respuesta){
 
                                         if(respuesta != false){
-
-                                            var arrayText = []; arrayId = []; arrayValue = []; countArray = 0; indexValue = 0; countIndex = 0; count = 0;
-
-                                            var div = document.querySelector('#Refresh');
-                                            var stringJSON = JSON.parse(respuesta);
-
-                                            div.innerHTML = "";
-
-                                            for(x in stringJSON){
-                                                countArray++;
-                                            }
-
-                                            var datas = JSON.parse(respuesta, function (key, value) {
-
-                                                if(count != 1){
-                                                    arrayValue.push(value);    
-                                                }
-                                                if(key != "id")
-                                                {
-                                                    count = 0;
-                                                }
-                                                else{
-                                                    arrayId.push(value);
-                                                }
-                                                if(key == "nombre")
-                                                {
-                                                    arrayText = arrayText + '<div class="card card-item-container"><div class="card-body card-item"><div class="card-name" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
-                                                }
-                                                if(key == "habilidadesBlandas"){
-                                                    arrayText = arrayText + '<div class="card-description" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div class="card-button-container"><button type="buttom" class="card-button green-button" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" class="card-button red-button" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
-                                                    indexValue++;
-                                                }
-                                                if(key == "updated_at"){
-
-                                                    arrayText = arrayText + '</div></div>';
-                                                    count = 1;  
-                                                    arrayValue = [];
-                                                    countIndex++;
-
-                                                }
-                                                if(key == "updated_at" && countIndex == countArray){
-                                                    div.innerHTML = div.innerHTML + arrayText;
-                                                }
-
-                                            });
+                                            actualizarPuestos(respuesta);
                                         }
                                         else{
                                             document.querySelector("#textToast").innerHTML = "Error al actualizar lista";

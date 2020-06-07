@@ -62,7 +62,6 @@ form{
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    flex-wrap: wrap;
     justify-content: space-between;
     flex-grow: 1;
 }
