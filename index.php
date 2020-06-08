@@ -189,7 +189,7 @@
                         if($name == "nombre" || $name == "habilidadesTecnicas"){
                             if($count == 1 ){?>
 
-                                <div class="card-description" id="habilidadesTecnicas_<?php echo $arrayID; ?>"><?php echo $value; ?></div><div class="card-button-container"><button type="buttom" class="green card-button" data-toggle="modal" onclick="modificarPanel(<?php echo $arrayID;?>)"data-target="#editModal">Editar</button><button type="buttom" class="red card-button" data-toggle="modal" onclick="preDeletePuesto(<?php echo $arrayID;?>)" data-target="#deleteModal">Eliminar</button></div><?php
+                                <div class="card-description" id="habilidadesTecnicas_<?php echo $arrayID; ?>"><?php echo $value; ?></div><div class="card-button-container"><button type="buttom" class="green-button card-button" data-toggle="modal" onclick="modificarPanel(<?php echo $arrayID;?>)"data-target="#editModal">Editar</button><button type="buttom" class="red-button card-button" data-toggle="modal" onclick="preDeletePuesto(<?php echo $arrayID;?>)" data-target="#deleteModal">Eliminar</button></div><?php
                     
                                 $count = 0; $arrayID = 0;
                             } 
@@ -228,7 +228,6 @@
                             title: {
                               text: 'Técnologías'
                             },
-
                             series: [{
                                 type: 'pie',
                                 // allowPointSelect: true,
