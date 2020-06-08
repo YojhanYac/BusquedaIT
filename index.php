@@ -27,51 +27,11 @@
     <body>
 
         <div>
-            <?php 
-                $valor = $dataBase->graficos('puestos');
-                $value = [];
-                $countValue = [];
-                $buffArray = [];
-                $valueArray = "";
-                $arrayData = [];
-                $nameValue = "habilidadesTecnicas";
-                // var_dump($arrayData);
-                $contador = 0;
-                $validador = 0;
-
-                $cantArray = [];
-                for( $i = 0; $i < count($valor); $i++){ //recorre todas las posiciones de la tabla puestos
-
-                    $valueArray = $valueArray . ", " . $valor[$i][$nameValue]; //filtro para guardar solo los datos en un string
-                    $buffArray = explode(", ", $valueArray); //separamos los datos que están dentro de las ',' y se guardan en el array
-
-                    for($v = 1; $v < count($buffArray); $v++){ //recorre el array con los datos guardados
-                        
-                       //echo "<br>" . $buffArray[$v] . "<br>"; //
-                        // PHP
-                        // Java
-                        // SQL
-                        // Git
-
-                        if(empty($arrayData)){
-                            $arrayData[] = $buffArray[$v];
-                            $cantArray[] = 1;
-                        }
-                        else{
-                            for($x = 0; $x < count($arrayData); $x++){
-                                if($arrayData[$x] == $buffArray[$v]){
-                                    $cantArray[$x]++;
-                                    echo "Se encontró un identico!";
-                                }
-                            }
-                        }
-                    }
-                    $valueArray = "";
-                }
-                var_dump($cantArray);
-                // var_dump($arrayData);
-?>
+            <?php ?>
         </div>
+
+        <div id="graph" ><?php //echo $arrayGraficos; ?></div>
+
 
         <!-- TITULO -->
         <div class="navbar bg-light title-page">
@@ -95,7 +55,7 @@
         <div class="navbar navbar-expand-lg navbar-light bg-light main-container">
             <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" onclick="" data-target="#exampleModal">Agregar puesto</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficosModal">Gráficos</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficosModal" onclick="graphP()" >Gráfico</button>
             </div> 
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
@@ -103,7 +63,7 @@
             </form>
         </div>
 
-        <!-- MODAL PARA CARGAR DATOS LLAMDO POR BOTON "AGREGAR PUESTO" -->
+        <!-- MODAL PARA CARGAR DATOS LLAMADO POR BOTON "AGREGAR PUESTO" -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -118,7 +78,7 @@
                             <input type="text" id="empresa" name="empresa" value="" placeholder="Empresa"><br>
                             <input type="text" id="nivel" name="nivel" value="" placeholder="Nivel"><br>
                             <input type="text" id="remuneracion" name="remuneracion" value="" placeholder="Remuneración"><br>
-                            <input type="text" id="habilidadesTecnicas" name="habilidadesTecnicas" value="" placeholder="Habilidades Técnicas"><br>
+                            <input type="text" id="habilidadesTecnicas" name="habilidadesTecnicas" value="" placeholder="Habilidades Técnicas" required><br>
                             <input type="text" id="habilidadesBlandas" name="habilidadesBlandas" value="" placeholder="Habilidades Blandas"><br><br>    
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Cerrar</button>
@@ -130,11 +90,12 @@
             </div>
         </div>
 
+        <!-- MODAL QUE SERÁ LLAMADO AL HACER CLICK EN "Gráfico" -->
         <div class="modal fade" id="graficosModal" tabindex="-1" role="dialog" aria-labelledby="graficosModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="graficosModalLabel">Gráficos</h5>
+                        <h5 class="modal-title" id="graficosModalLabel">Gráfico</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
@@ -152,7 +113,7 @@
             </div>
         </div>
 
-        <!-- MODALQUE SERÁ LLAMADO AL HACER CLICL EN "Editar", SE VISUALIZARAN LOS DATOS DEL PUESTO SELECCIONADO -->
+        <!-- MODAL QUE SERÁ LLAMADO AL HACER CLICK EN "Editar", SE VISUALIZARAN LOS DATOS DEL PUESTO SELECCIONADO -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -250,38 +211,35 @@
 
         <script type="text/javascript">
 
+            function graphP(){
+                
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: 'graficos.php',
+                    success: function (respuesta){
 
-            Highcharts.chart('graficoPuestos', {
-            
-                chart: {
-                  styledMode: true
-                },
+                        Highcharts.chart('graficoPuestos', {
+                        
+                            chart: {
+                              styledMode: true
+                            },
 
-                title: {
-                  text: 'Técnologías'
-                },
+                            title: {
+                              text: 'Técnologías'
+                            },
 
-                // xAxis: {
-                //   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                // },
-
-                series: [{
-                    type: 'pie',
-                    allowPointSelect: true,
-                    keys: ['name', 'y', 'selected', 'sliced'],
-                    data: [
-                        ['Apples', 500.9, false],
-                        ['Pears', 71.5, false],
-                        ['Oranges', 106.4, false],
-                        ['Plums', 129.2, false],
-                        ['Bananas', 144.0, false],
-                        ['Peaches', 176.0, false],
-                        ['Prunes', 135.6, true, true],
-                        ['Avocados', 148.5, false]
-                    ],
-                    showInLegend: true
-                }]
-            });
+                            series: [{
+                                type: 'pie',
+                                // allowPointSelect: true,
+                                // keys: ['name', 'y', 'selected', 'sliced'],
+                                data: respuesta,
+                                showInLegend: true
+                            }]
+                        });
+                    }
+                });
+            }    
 
             // FUNCIÓN QUE ELIMINA EL PUESTO SELECIONADO, Y LUEGO ACTUALIZA LA VISTA DE PUESTOS
             $('#deletePanel').submit( function (a){
