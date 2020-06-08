@@ -5,4 +5,4 @@ Proyecto iniciado con el objetivo de generar una base de datos de propuestas lab
 
 Estado del proyecto: en curso.
 
-Online: https://yojhanyac.000webhostapp.com/
+En línea: https://yojhanyac.000webhostapp.com/
