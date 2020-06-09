@@ -1,16 +1,18 @@
 @import 'https://code.highcharts.com/css/highcharts.css';
 
 /* General */
-
 html{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 body {
-    background: gray; width: 100%;
-    width: 100%;
-    min-width: 600px;
+    background: #222831; width: 100%;
+    width: 95%;
 }
 .title-page{
     margin: 1% 0.4% 0.25% 0.4%; border-radius: 0.25rem;
+    background: #fce38a;
 }
 h1{
     width: 100%;
@@ -62,29 +64,32 @@ form{
 /* Cartas de items */
 .card-item-container{
     width: auto;
-    margin: 0.25% 0.4%;
-
+    margin: 0.5% 0.4%;
+    border-radius: 10px;
 }
 .card-item{
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
     justify-content: space-between;
     flex-grow: 1;
+    align-items: center;
+    flex-wrap: wrap;
 }
 .card-description{
-    margin: 0px 0px;
+    margin: 0px 2%;
     display:inline-block;
-    width: auto;
-    margin-right: 4%;
-
+    text-align: center;
+    width: 55%;
+    padding: 1.5% 10px;
+    border-left: 1px solid grey;
 }
 .card-name{
+    padding: 1.5% 0px;
     margin: 0px 0px;
-    width: auto;
-    min-width: 150px;
+    width: 15%;
+    height: auto;
+    min-width: 120px;
     display:inline-block;
-    margin-right: 4%;
+    font-weight: bold;
 }
 
 
@@ -92,9 +97,11 @@ form{
 .card-button-container{
     width: 10%;
     min-width:200px;
+    max-height: 55px;
 }
 .card-button{
-    width: 50%;
+    width: 48%;
+    margin-right: 1%;
 }
 .green-button:hover{
     background: #26ac24;
@@ -104,25 +111,22 @@ form{
 }
 
 
-
 /* Highcharts */
-.highcharts-pie-series .highcharts-point {
+.highcharts-pie-series .highcharts-point{
 	stroke: #EDE;
 	stroke-width: 2px;
 }
-.highcharts-pie-series .highcharts-data-label-connector {
+.highcharts-pie-series .highcharts-data-label-connector{
 	stroke: silver;
 	stroke-dasharray: 2, 2;
 	stroke-width: 2px;
 }
-
-.highcharts-figure, .highcharts-data-table table {
+.highcharts-figure, .highcharts-data-table table{
   min-width: 320px; 
   max-width: 600px;
   margin: 1em auto;
 }
-
-.highcharts-data-table table {
+.highcharts-data-table table{
 	font-family: Verdana, sans-serif;
 	border-collapse: collapse;
 	border: 1px solid #EBEBEB;
@@ -131,21 +135,116 @@ form{
 	width: 100%;
 	max-width: 500px;
 }
-.highcharts-data-table caption {
+.highcharts-data-table caption{
   padding: 1em 0;
   font-size: 1.2em;
   color: #555;
 }
-.highcharts-data-table th {
+.highcharts-data-table th{
 	font-weight: 600;
   padding: 0.5em;
 }
-.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption{
   padding: 0.5em;
 }
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even){
   background: #f8f8f8;
 }
-.highcharts-data-table tr:hover {
+.highcharts-data-table tr:hover{
   background: #f1f7ff;
+}
+
+
+@media (max-width: 900px){
+    .card-item-container{
+        margin: 1% 0.4%;
+    }
+    .card-button-container{
+        width: 100px;
+        min-width: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        text-align: center;
+        align-items: center;
+        height: 75px;
+        max-height: 120px;
+    }
+    .card-button{
+        width: 100px;
+        height: 34px;
+    }
+}
+@media (max-width: 650px){
+    .card-name{
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+    .card-description{
+        width: 80%;
+        border-right: none;
+        border-left: none;
+        border-top: 1px solid grey;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .card-item{
+        justify-content: space-evenly;
+        padding: 12px 0px;
+    }
+    .card-button-container{
+        margin: 2% 0px;
+        width: 85%;
+        display: flex;
+        justify-content: flex-end;
+        height: auto;
+    }
+    .card-button{
+        width: 12%;
+        min-width: 85px;
+    }
+}
+@media (max-width: 500px){
+    .button-head-container{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+    .button-head{
+        width: 40%;
+    }
+    .input-head{
+        width: 100%;
+    }
+}
+
+@media (max-width: 412px){
+    .card-name{
+        width: 100%;
+        height: auto;
+    }
+    .card-description{
+        width: 100%;
+        margin: 4% 0px;
+        max-width: 100%;
+    }
+    .card-item{
+        justify-content: space-evenly;
+        padding: 10px 20px;
+    }
+    .card-item-container{
+        margin: 2% 0.4%;
+    }
+    .card-button-container{
+        margin: 2% 0px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;   
+    }
+    .card-button{
+        width: 40%;
+    }
 }

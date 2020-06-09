@@ -19,10 +19,8 @@
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-        <style>
-        </style>
-
         <title>BusquedaIT</title>
+        
     </head>
     <body>
 
@@ -35,7 +33,7 @@
 
         <!-- TITULO -->
         <div class="navbar bg-light title-page">
-            <h1>Bienvenido a BusquedaIT!</h1>
+            <h1>BusquedaIT</h1>
         </div>
 
         <!-- NOTIFICACIÓN TOAST -->
@@ -53,11 +51,11 @@
 
         <!-- AGREGAR PUESTO PRESIONANDO EN EL BOTON "AGREGAR PUESTO" LLAMANDO A MODAL "exampleModal" PARA CARGAR DATOS-->
         <div class="navbar navbar-expand-lg navbar-light bg-light main-container">
-            <div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" onclick="" data-target="#exampleModal">Agregar puesto</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficosModal" onclick="graphP()" >Gráfico</button>
+            <div class="button-head-container">
+                <button type="button" class="btn btn-primary button-head" data-toggle="modal" onclick="" data-target="#exampleModal">Agregar puesto</button>
+                <button type="button" class="btn btn-primary button-head" data-toggle="modal" data-target="#graficosModal" onclick="graphP()" >Gráfico</button>
             </div> 
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0 input-head">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
                 <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
             </form>
@@ -189,7 +187,7 @@
                         if($name == "nombre" || $name == "habilidadesTecnicas"){
                             if($count == 1 ){?>
 
-                                <div class="card-description" id="habilidadesTecnicas_<?php echo $arrayID; ?>"><?php echo $value; ?></div><div class="card-button-container"><button type="buttom" class="green-button card-button" data-toggle="modal" onclick="modificarPanel(<?php echo $arrayID;?>)"data-target="#editModal">Editar</button><button type="buttom" class="red-button card-button" data-toggle="modal" onclick="preDeletePuesto(<?php echo $arrayID;?>)" data-target="#deleteModal">Eliminar</button></div><?php
+                                <div class="card-description" id="habilidadesTecnicas_<?php echo $arrayID; ?>"><?php echo $value; ?></div><div class="card-button-container"><button type="buttom" class="green-button card-button btn btn-primary" data-toggle="modal" onclick="modificarPanel(<?php echo $arrayID;?>)"data-target="#editModal">Editar</button><button type="buttom" class="red-button card-button btn btn-primary" data-toggle="modal" onclick="preDeletePuesto(<?php echo $arrayID;?>)" data-target="#deleteModal">Eliminar</button></div><?php
                     
                                 $count = 0; $arrayID = 0;
                             } 
@@ -414,7 +412,7 @@
                         arrayText = arrayText + '<div class="card card-item-container"><div class="card-body card-item"><div class="card-name" id="nombre_' + arrayId[indexValue] + '">' + value + "</div>";
                     }
                     if(key == "habilidadesBlandas"){
-                        arrayText = arrayText + '<div class="card-description" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div class="card-button-container"><button type="buttom" class="card-button green-button" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" class="card-button red-button" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
+                        arrayText = arrayText + '<div class="card-description" id="habilidadesTecnicas_' + arrayId[indexValue] + '">' + arrayValue[5] + '</div><div class="card-button-container"><button type="buttom" class="card-button green-button btn btn-primary" data-toggle="modal" onclick="modificarPanel(' + arrayId[indexValue] + ')"data-target="#editModal">Editar</button><button type="bottom" class="card-button red-button btn btn-primary" data-toggle="modal" onclick="preDeletePuesto(' + arrayId[indexValue] + ')" data-target="#deleteModal">Eliminar</button></div>';
                         indexValue++;
                     }
                     if(key == "updated_at"){
