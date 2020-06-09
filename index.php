@@ -20,25 +20,16 @@
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
         <title>BusquedaIT</title>
-        
+
     </head>
     <body>
 
-        <div>
-            <?php ?>
-        </div>
-
-        <div id="graph" ><?php //echo $arrayGraficos; ?></div>
-
-
         <!-- TITULO -->
-        <div class="navbar bg-light title-page">
-            <h1>BusquedaIT</h1>
-        </div>
+        <h1 class="title-page">BusquedaIT</h1>
 
         <!-- NOTIFICACIÓN TOAST -->
-        <div class="toast-container">
-            <div class="toast toast-position" id="toast" data-delay="1300">
+        <div class="toast-container" aria-live="polite" aria-atomic="true">
+            <div class="toast toast-position fade hide" id="toast" data-delay="1300">
                 <div class="toast-header">
                     <strong class="mr-auto">BusquedaIT</strong>
                     <small class="text-muted">2 segundos atrás</small>
@@ -91,7 +82,7 @@
         <!-- MODAL QUE SERÁ LLAMADO AL HACER CLICK EN "Gráfico" -->
         <div class="modal fade" id="graficosModal" tabindex="-1" role="dialog" aria-labelledby="graficosModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="z-index: 1500!important;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="graficosModalLabel">Gráfico</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

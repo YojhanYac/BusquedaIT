@@ -7,6 +7,6 @@ En línea: https://yojhanyac.000webhostapp.com/
 
 Funciones:
 -Agregar, editar y eliminar puestos.
--Visualizar gráfico de las 15 hábilidades más solicitadas, según los datos ingresados en la base de datos.
+-Visualizar gráfico de las 15 herramientas más solicitadas, según los datos ingresados en la base de datos.
 
 Estado del proyecto: en curso.
