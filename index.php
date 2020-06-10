@@ -42,14 +42,11 @@
 
         <!-- AGREGAR PUESTO PRESIONANDO EN EL BOTON "AGREGAR PUESTO" LLAMANDO A MODAL "exampleModal" PARA CARGAR DATOS-->
         <div class="navbar navbar-expand-lg navbar-light bg-light main-container">
+            <input class="form-control buscador" id="buscador" type="text" placeholder="Buscar" aria-label="Search">
             <div class="button-head-container">
                 <button type="button" class="btn btn-primary button-head" data-toggle="modal" onclick="" data-target="#exampleModal">Agregar puesto</button>
                 <button type="button" class="btn btn-primary button-head" data-toggle="modal" data-target="#graficosModal" onclick="graphP()" >Gráfico</button>
             </div> 
-            <form class="form-inline my-2 my-lg-0 input-head">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-            </form>
         </div>
 
         <!-- MODAL PARA CARGAR DATOS LLAMADO POR BOTON "AGREGAR PUESTO" -->
@@ -421,6 +418,54 @@
                 });
 
             }
+
+            function buscadorPuestos(puesto){
+
+                    $.ajax({
+                        url: 'buscadorPuestos.php',
+                        type: 'POST',
+                        datatype: 'json',
+                        data: {
+                            puesto: puesto,
+                            tabla: 'puestos'
+                        },
+                        success: function (respuesta){
+                            if(respuesta != "false"){
+                            // console.log(respuesta + "dentro del if");
+                            actualizarPuestos(respuesta);
+                            }
+                            else{
+                                // console.log(respuesta + "dentro del else");
+
+                                var div = document.querySelector('#Refresh');
+
+                                div.innerHTML = '<div class="card card-item-container"><div class="card-body card-item">No se encontraron resultados</div></div>';
+                            }
+                        }
+                    });
+            }
+
+            $(document).on('keyup', '#buscador', function(){
+
+                var busqueda = $(this).val();
+
+                if(busqueda != ""){
+                    buscadorPuestos(busqueda);
+                }
+                else if(busqueda == ""){
+                    $.ajax({
+                        url: 'actualizarLista.php',
+                        type: "POST",
+                        datatype: 'json',
+                        data: {
+                            tabla: "puestos"
+                        },
+                        success: function (respuesta){
+                            actualizarPuestos(respuesta);
+                        }
+                    });
+                }
+            })
 
 
             $(document).ready(function (){

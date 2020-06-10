@@ -59,6 +59,14 @@ class BaseDeDatos {
         return $resultado = $this->mostrar($tabla);
     }
 
+    public function buscadorPuesto($tabla, $puesto){
+
+        $resultado = $this->conexion->query("SELECT * FROM $tabla WHERE nombre LIKE '%" . $puesto . "%' OR empresa LIKE '%" . $puesto . "%' OR nivel LIKE '%" . $puesto . "%' OR remuneracion LIKE '%" . $puesto . "%' OR habilidadesTecnicas LIKE '%" . $puesto . "%' OR habilidadesBlandas LIKE '%" . $puesto . "%' ") or die($this->conexion->error);
+        if($resultado->num_rows > 0)
+            return $resultado->fetch_all(MYSQLI_ASSOC);
+        return false;
+    }
+
 }
 
 ?>

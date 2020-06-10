@@ -22,6 +22,14 @@ body {
     border-radius: 0.5rem;
 }
 
+.buscador{
+    width: 100%!important;
+    margin: 1% 1%;
+}
+.button-head-container{
+    margin: 0px 1%;
+}
+
 h1{
     width: 90%;
     border: 3 solid yellow;
@@ -71,6 +79,7 @@ form{
 .main-container{
     display:flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin: 0.25% 0.4% 1% 0.4%;
     border-radius: 0.5rem;
 }
