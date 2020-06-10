@@ -12,6 +12,4 @@ Estado del proyecto: en curso.
 
 Herramintas utilizadas: PHP, SQL, jQuery, AJAX, JavaScript, Bootstrap
 
-Visualizar en línea: https://yojhanyac.000webhostapp.com/
-
-10/06/2020 offline
+Visualizar en línea: https://yojhanyac.000webhostapp.com/Busquedait/
