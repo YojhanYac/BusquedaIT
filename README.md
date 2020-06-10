@@ -12,4 +12,4 @@ Estado del proyecto: en curso.
 
 Herramintas utilizadas: PHP, SQL, jQuery, AJAX, JavaScript, Bootstrap
 
-Ver en línea: https://yojhanyac.000webhostapp.com/
+Visualizar en línea: https://yojhanyac.000webhostapp.com/
