@@ -8,7 +8,8 @@ Funciones:
 * Visualizar gráfico de las 15 herramientas más solicitadas, según los datos ingresados en la base de datos
 * Realizar busqueda de palabras clave y obtener todos los puestos que la contengan
 
-Estado del proyecto: en curso
+Estado del proyecto: en curso.
+
 Herramintas utilizadas: PHP, SQL, jQuery, AJAX, JavaScript, Bootstrap
 
 Ver en línea: https://yojhanyac.000webhostapp.com/
